@@ -4,8 +4,8 @@ Chrome 重定向工具
 
 ### 安装
  - 如果你可以翻墙，建议直接访问 [Chrome Webstore](https://chrome.google.com/webstore/detail/beknllkoddklgoflifhgkhkkibgkpdch)
- - 如果你翻不了墙，可以直接下载[owl-redirector.crx](https://github.com/meowtec/Owl-redirector/blob/master/owl-redirector.crx?raw=true)，然后打开`扩展程序`页面，把`.crx`文件拖进去。
- - 如果前两种方法无效，请直接下载这个项目文件，再以开发者模式加载，网上很多教程，略。
+ - 如果你翻不了墙，可以下载 [owl-redirector.crx](https://github.com/meowtec/Owl-redirector/blob/master/owl-redirector.crx?raw=true)，然后打开`扩展程序`页面，把`.crx`文件拖进去。
+ - 如果前两种方法无效，请直接下载这个项目文件，再以开发者模式加载，网上很多教程，此处略。
 
 ### 使用
 #### 主界面

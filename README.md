@@ -90,18 +90,20 @@ replacer(url):置空
 
 ### 内置方法
  - download()   
- 你可以在 replacer 函数中调用 download 方法，对资源进行下载操作，下面的实例表示在`music.qq.com`试听音乐时自动下载音频文件：   
- regexp:   
- ```
- ^http:\/\/cc\.stream\.qqmusic\.qq\.com\/.*\.m4a.*$
- ```
- replacer(函数):   
- ```
- function (url){
-   // 如果函数返回值为 undefined 则不会重定向
-   download(url)
- }
- ```
+ 你可以在 replacer 函数中调用 download 方法，对资源进行下载操作，下面的实例表示在`music.qq.com`试听音乐时自动下载音频文件：
+ 
+ 
+regexp:
+```
+^http:\/\/cc\.stream\.qqmusic\.qq\.com\/.*\.m4a.*$
+```
+replacer(函数):
+```
+function (url){
+  // 如果函数返回值为 undefined 则不会重定向
+  download(url)
+}
+```
 
 ### 导出和导入
 设置页面有`导出`和`导入`两个按钮，分别可以讲当前设置导出为`.bac`格式的文本文件，以及从`.bac`文件导入备份的设置。   

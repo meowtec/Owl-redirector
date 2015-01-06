@@ -89,13 +89,13 @@ replacer(url):置空
 
 
 ### 内置方法
- - download()
+ - download()   
  你可以在 replacer 函数中调用 download 方法，对资源进行下载操作，下面的实例表示在`music.qq.com`试听音乐时自动下载音频文件：   
- regexp:
+ regexp:   
  ```
  ^http:\/\/cc\.stream\.qqmusic\.qq\.com\/.*\.m4a.*$
  ```
- replacer(函数):
+ replacer(函数):   
  ```
  function (url){
    // 如果函数返回值为 undefined 则不会重定向

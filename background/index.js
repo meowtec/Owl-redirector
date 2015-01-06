@@ -20,7 +20,12 @@ var regexList = {}
 
 function loadData(name) {
   if (!name || name == 'rules') {
-    var ruleList = JSON.parse(localStorage.getItem('rules'));
+    var ruleList
+    try {
+      ruleList = JSON.parse(localStorage.getItem('rules')) || [];
+    } catch (e) {
+      ruleList = []
+    }
     urlList = {};
     regexList = {};
 
@@ -52,7 +57,12 @@ function loadData(name) {
   }
 
   if (!name || name == 'global') {
-    var globalSetting = JSON.parse(localStorage.getItem('global'));
+    var globalSetting;
+    try {
+      globalSetting = JSON.parse(localStorage.getItem('global')) || {}
+    } catch (e) {
+      globalSetting = {}
+    }
     if (globalSetting.enable) {
       ruleEnable();
     } else {

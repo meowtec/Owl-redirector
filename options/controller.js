@@ -119,27 +119,42 @@ function owlController($scope, $timeout) {
     }
   }
 
-  $scope.writing = {
+  $scope.messages = {
+    settingTitle: chrome.i18n.getMessage('settingTitle'),
+    helpTitle: chrome.i18n.getMessage('helpTitle'),
+    aboutTitle: chrome.i18n.getMessage('aboutTitle'),
+    ruleListTitle: chrome.i18n.getMessage('ruleListTitle'),
     textareaplaceholder: {
-      'url': '输入替换后的 url，如果什么都不填则表示被阻止访问',
-      'function': '输入要替换原 url 的函数，函数参数 url 为原 url，函数返回值为替换后的新 url，如:\n\nfunction(url){\n  return url+\'#myhash\'\n}',
-      'data': '输入新的 body 数据。此数据将被编码为 data URL，并将原来的请求重定向到这个 data URL。\n你可以使用此功能直接修改网页中的外链 css 或者 js（含 jsonp）。\n由于 ajax 默认不能跨域访问 data URL，你无法使用本功能直接修改 ajax 数据。'
+      'url': chrome.i18n.getMessage('textareaPlaceholder_url'),
+      'function': chrome.i18n.getMessage('textareaPlaceholder_function'),
+      'data': chrome.i18n.getMessage('textareaPlaceholder_data')
     },
     regex: {
-      true: '输入正则，符合此正则的请求将被重定向',
-      false: '输入url，此url将被重定向'
+      true: chrome.i18n.getMessage('inputPlaceholder_regex'),
+      false: chrome.i18n.getMessage('inputPlaceholder_url')
     },
     submitButton: {
-      0: '添加',
-      1: '更新'
+      0: chrome.i18n.getMessage('add'),
+      1: chrome.i18n.getMessage('update')
     },
     itemEnable: {
-      true: '点击禁用',
-      false: '点击启用'
+      true: chrome.i18n.getMessage('toggleDisable'),
+      false: chrome.i18n.getMessage('toggleEnable')
     },
     globalEnable: {
-      true: '点击全局禁用',
-      false: '点击全局启用'
-    }
+      true: chrome.i18n.getMessage('toggleDisableGlobal'),
+      false: chrome.i18n.getMessage('toggleEnableGlobal')
+    },
+    author: chrome.i18n.getMessage('author'),
+    homePage: chrome.i18n.getMessage('homePage'),
+    version: chrome.i18n.getMessage('version'),
+    'import': '',
+    'export': '',
+    close: '',
+    url: '',
+    bodyData: '',
+    'function': '',
+    ruleEmptyTip: '还没有规则，点击上面的<i class="fontello">&#xe812;</i>按钮添加一个吧！',
+    addNew: '添加新规则'
   }
 }

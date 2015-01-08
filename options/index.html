@@ -22,29 +22,26 @@
   <h1 class="nav-header">OWL</h1>
   <ul class="nav-list" id="nav-list">
     <li class="selected">
-      <button tab-target="#setting">设置</button>
+      <button tab-target="#setting">{{messages.settingTitle}}</button>
     </li>
     <li>
-      <button tab-target="#help">帮助</button>
-    </li>
-    <li>
-      <button tab-target="#about">关于</button>
+      <button tab-target="#about">{{messages.aboutTitle}}</button>
     </li>
   </ul>
 </div>
 <div class="main-container" id="main-container">
   <div id="setting" class="main-section" style="display: block;">
-    <div class="rules-trash-menu" ng-class="{0: 'hide'}[trashCount]">
+    <div class="rules-trash-menu" ng-class="{0: 'hide'}[trashCount]" id="J-trash">
       <!--{{rules.trashCount}}-->
       你删除了{{trashCount}}条，你可以<button ng-click="dealTrash(0)" class="icon-trash">清空</button>回收站，或者<button ng-click="dealTrash(1)" class="icon-ccw">恢复</button>这些删除。
       <span  ng-show='latestTrash'>你也可以<button ng-click="dealTrash(2)" class="icon-history">取消</button>最近一次删除</span>
     </div>
-    <h2 class="sub-header">规则列表</h2>
+    <h2 class="sub-header">{{messages.ruleListTitle}}</h2>
     <div class="rule-menu">
-      <input type="checkbox" class="slide-checkbox"  ng-model="globalSetting.enable" title="{{writing.globalEnable[globalSetting.enable]}}">
-      <button ng-click="showAddClick()" class="add-block-btn icon-doc-new-circled" title="添加新规则"></button>
+      <input type="checkbox" class="slide-checkbox"  ng-model="globalSetting.enable" title="{{messages.globalEnable[globalSetting.enable]}}">
+      <button ng-click="showAddClick()" class="add-block-btn icon-doc-new-circled" title="{{messages.addNew}}"></button>
     </div>
-    <div ng-hide="rules.length-trashCount" class="rule-empty-tip">还没有规则，点击上面的<i class="fontello">&#xe812;</i>按钮添加一个吧！</div>
+    <div ng-hide="rules.length-trashCount" class="rule-empty-tip">{{messages.ruleEmptyTip}}</div>
     <ul class="rule-list" ng-class="{true: '', false: 'disable'}[globalSetting.enable]">
       <li class="rule-item" ng-repeat="rule in rules | listFilter"  ng-class="{true: '', false: 'disable'}[rule.enable] + ' item-'+ {'url': 'url', 'function': 'function', 'data': 'data'}[rule.type] + {true: ' dropping'}[rule.dropping]">
         <div class="url-pattern" ng-class="{true: 'url-regex'}[rule.regex]">
@@ -57,49 +54,44 @@
         <div class="item-control">
           <button class="icon-trash rule-delete item-cicon" ng-click="deleteItemClick(rule)" title="删除"></button>
           <button class="icon-edit-alt rule-edit item-cicon" ng-click="editItemClick(rule)" title="编辑"></button>
-          <input type="checkbox" class="day-night-checkbox" ng-model="rule.enable" title="{{writing.itemEnable[rule.enable]}}">
+          <input type="checkbox" class="day-night-checkbox" ng-model="rule.enable" title="{{messages.itemEnable[rule.enable]}}">
         </div>
       </li>
     </ul>
     <div class="backup">
-      <button id="J-backup-import">导入<input type="file"></button>
-      <button id="J-backup-export">导出</button>
+      <button id="J-backup-import">{{messages.import}}<input type="file"></button>
+      <button id="J-backup-export">{{messages.export}}</button>
     </div>
     <div class="edit-container-overlay hide" ng-class="{true: '', false: 'hide'}[editAble]">
       <div class="edit-container">
-        <button ng-click="editCloseClick()" class="box-close-btn icon-cancel-1" title="关闭"></button>
+        <button ng-click="editCloseClick()" class="box-close-btn icon-cancel-1" title="{{messages.close}}"></button>
         <form>
           <div class="form-item">
-            <input type="text" value="" class="text-input" placeholder="{{writing.regex[stage.regex]}}" ng-model="stage.url">
+            <input type="text" value="" class="text-input" placeholder="{{messages.regex[stage.regex]}}" ng-model="stage.url">
             <input type="checkbox" id="url-isregex" class="checkbox-reg" ng-model="stage.regex" ng-change="regstrExchange()" title="正则">
           </div>
           <div class="form-item">
-          <textarea class="replace-editor edit-{{stage.type}}" placeholder="{{writing.textareaplaceholder[stage.type]}}"  ng-model="stage.replacer"></textarea>
+          <textarea class="replace-editor edit-{{stage.type}}" placeholder="{{messages.textareaplaceholder[stage.type]}}"  ng-model="stage.replacer"></textarea>
           <div class="replace-area-header">
-            <input type="radio" name="replacetype" value="url" class="icon-hash radio-icon" ng-model="stage.type" title="链接">
-            <input type="radio" name="replacetype" value="data" class="icon-doc-text radio-icon" ng-model="stage.type" title="内容">
-            <input type="radio" name="replacetype" value="function" class="icon-facebook radio-icon" ng-model="stage.type" title="函数">
+            <input type="radio" name="replacetype" value="url" class="icon-hash radio-icon" ng-model="stage.type" title="{{messages.url}}">
+            <input type="radio" name="replacetype" value="data" class="icon-doc-text radio-icon" ng-model="stage.type" title="{{messages.bodyData}}">
+            <input type="radio" name="replacetype" value="function" class="icon-facebook radio-icon" ng-model="stage.type" title="{{messages['function']}}">
           </div>
         </div>
         <div class="form-item">
-          <button class="submit-button" ng-click="editSubmitClick()">{{writing.submitButton[editType]}}</button>
+          <button class="submit-button" ng-click="editSubmitClick()">{{messages.submitButton[editType]}}</button>
         </div>
         </form>
       </div>
     </div>
   </div>
-  <div id="help" class="main-section">
-    <h2 class="sub-header">帮助</h2>
-    <h3>请前往 Github</h3>
-    <a href="https://github.com/meowtec/Owl-redirector" target="_blank">github.com/meowtec/Owl-redirector</a>
-  </div>
   <div id="about" class="main-section">
-    <h2 class="sub-header">关于</h2>
-    <h3>版本</h3>
+    <h2 class="sub-header">{{messages.aboutTitle}}</h2>
+    <h3>{{messages.version}}</h3>
     <p id="current-version">{{version}}</p>
-    <h3>主页</h3>
+    <h3>{{messages.homePage}}</h3>
     <a href="https://github.com/meowtec/Owl-redirector" target="_blank">github.com/meowtec/Owl-redirector</a>
-    <h3>作者微博</h3>
+    <h3>{{messages.author}}</h3>
     <a href="http://weibo.com/u/2113729271" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/2113729271/64e7ae81/1.png"/></a>
   </div>
 </div>

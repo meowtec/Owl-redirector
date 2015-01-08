@@ -57,7 +57,7 @@
     "message": "You have deleted {{trashCount}} rules，you can <button ng-click=\"dealTrash(0)\" class=\"icon-trash\">clear</button> the trash，or <button ng-click=\"dealTrash(1)\" class=\"icon-ccw\">recover</button> then。<span  ng-show='latestTrash'>Or you can <button ng-click=\"dealTrash(2)\" class=\"icon-history\">cancel</button> the latest deletion.</span>"
   },
   "importWarn": {
-    "message": "Please DO NOT import any files only if you are sure tha it is secure. Are you sure to import this file?"
+    "message": "Please DO NOT import any files unless you are sure that it is an secure file. Are you sure to import this file?"
   },
   "importError": {
     "message": "Invalid file！"

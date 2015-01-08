@@ -1,110 +1,95 @@
 {
   "settingTitle": {
-    "message": "设置",
-    "description": "setting"
+    "message": "Setting"
   },
   "helpTitle": {
-    "message": "帮助",
-    "description": "help"
+    "message": "Help"
   },
   "aboutTitle": {
-    "message": "关于",
-    "description": "about"
+    "message": "About"
   },
   "ruleListTitle": {
-    "message": "规则列表",
-    "description": "Rule List"
+    "message": "Rules List"
   },
   "textareaPlaceholder_url": {
-    "message": "输入替换后的 url，如果什么都不填则表示被阻止访问",
-    "description": "replacer placeholder - url mode"
+    "message": "An URL, then the request will be redirected to the URL. If this box was leave empty, the request would be blocked."
   },
   "textareaPlaceholder_function": {
-    "message": "输入要替换原 url 的函数，函数参数 url 为原 url，函数返回值为替换后的新 url，如:\n\nfunction(url){\n  return url+'#myhash'\n}",
-    "description": "replacer placeholder - function mode"
+    "message": "A function receiving the origin url as the first argument, and it should return an new URL. e.g.:\n\nfunction(url){\n  return url+'#myhash'\n}"
   },
   "textareaPlaceholder_data": {
-    "message": "输入新的 body 数据。此数据将被编码为 data URL，并将原来的请求重定向到这个 data URL。\n你可以使用此功能直接修改网页中的外链 css 或者 js（含 jsonp）。\n由于 ajax 默认不能跨域访问 data URL，你无法使用本功能直接修改 ajax 数据。",
-    "description": "replacer placeholder - data mode"
+    "message": "A piece of data, which will be encoded to a Data-URL, then the request will be redirected to the Data-URL.\nYou can use it to modify your css or js imported with <link> or <script>."
   },
   "inputPlaceholder_regex": {
-    "message": "输入正则，符合此正则的请求将被重定向",
-    "description": "url placeholder - regex mode"
+    "message": "Regexp to redirected"
   },
   "inputPlaceholder_url": {
-    "message": "输入url，此url将被重定向",
-    "description": "url placeholder - url mode"
+    "message": "URL to redirected"
   },
   "add": {
-    "message": "添加",
-    "description": "add"
+    "message": "Add"
   },
   "update": {
-    "message": "更新",
-    "description": "update"
+    "message": "Update"
   },
   "toggleDisable": {
-    "message": "点击禁用",
-    "description": "disable"
+    "message": "disable"
   },
   "toggleEnable": {
-    "message": "点击启用",
-    "description": "enable"
+    "message": "enable"
   },
   "toggleDisableGlobal": {
-    "message": "点击全局禁用",
-    "description": "disable global"
+    "message": "global disable"
   },
   "toggleEnableGlobal": {
-    "message": "点击全局启用",
-    "description": "enable global"
+    "message": "global enable"
   },
   "author": {
-    "message": "作者"
+    "message": "Author"
   },
   "homePage": {
-    "message": "主页"
+    "message": "HomePage"
   },
   "version": {
-    "message": "版本"
+    "message": "Version"
   },
   "trash": {
-    "message": "你删除了{{trashCount}}条，你可以<button ng-click=\"dealTrash(0)\" class=\"icon-trash\">清空</button>回收站，或者<button ng-click=\"dealTrash(1)\" class=\"icon-ccw\">恢复</button>这些删除。<span  ng-show='latestTrash'>你也可以<button ng-click=\"dealTrash(2)\" class=\"icon-history\">取消</button>最近一次删除</span>"
+    "message": "You have deleted {{trashCount}} rules，you can <button ng-click=\"dealTrash(0)\" class=\"icon-trash\">clear</button> the trash，or <button ng-click=\"dealTrash(1)\" class=\"icon-ccw\">recover</button> then。<span  ng-show='latestTrash'>Or you can <button ng-click=\"dealTrash(2)\" class=\"icon-history\">cancel</button> the latest deletion.</span>"
   },
   "importWarn": {
-    "message": "请不要随便导入未知文件，除非你能够确定它是安全的。你确定导入该文件吗？"
+    "message": "Please DO NOT import any files only if you are sure tha it is secure. Are you sure to import this file?"
   },
   "importError": {
-    "message": "备份文件无效！"
+    "message": "Invalid file！"
   },
   "import": {
-    "message": "导入"
+    "message": "import"
   },
   "export": {
-    "message": "导出"
+    "message": "export"
   },
   "close": {
-    "message": "关闭"
+    "message": "close"
   },
   "bodyData": {
-    "message": "数据"
+    "message": "data"
   },
   "function": {
-    "message": "函数"
+    "message": "function"
   },
   "ruleEmptyTip": {
-    "message": "还没有规则，点击上面的<i class=\"fontello\">&#xe812;</i>按钮添加一个吧！"
+    "message": "There is no rule, click <i class=\"fontello\">&#xe812;</i> to create one."
   },
   "addNew": {
-    "message": "添加新规则"
+    "message": "add new rule"
   },
   "regex": {
-    "message": "正则"
+    "message": "regex"
   },
   "delete": {
-    "message": "删除"
+    "message": "delete"
   },
   "edit": {
-    "message": "编辑"
+    "message": "edit"
   }
 }

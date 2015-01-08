@@ -37,16 +37,17 @@ function loadData(name) {
       if (item.regex) {
         if (regexList[item.url]) {
           continue
-        } else {
-          regexList[item.url] = item
-          item.url = new RegExp(item.url)
         }
+        regexList[item.url] = item
+        item.url = new RegExp(item.url)
+
       } else {
+        item.url = item.url.split('#')[0] // remove hash
+        ;(new RegExp('\:\/\/.*/').test(item.url)) || (item.url = item.url + '/') // add '/' after host; e.g. `http://www.baidu.com` -> `http://www.baidu.com/`
         if (urlList[item.url]) {
           continue
-        } else {
-          urlList[item.url] = item
         }
+        urlList[item.url] = item
       }
       if (item.type == 'function') {
         item.replacer = newFunction(item.replacer)
@@ -87,7 +88,7 @@ function replaceUrl(url, ruleItem) {
 }
 
 function beforeRequest(details) {
-  var url = details.url
+  var url = details.url.split('#')[0]
   var redirectUrl
   if (urlList[url]) {
     redirectUrl = replaceUrl(url, urlList[url])

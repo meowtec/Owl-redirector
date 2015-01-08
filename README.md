@@ -1,6 +1,7 @@
 OWL
 ===
 Chrome 重定向工具
+
 [英文版翻译中](https://github.com/meowtec/Owl-redirector/blob/master/README_en.md)（作者英文渣）
 ### 安装
  - 如果你可以翻墙，建议直接访问 [Chrome Webstore](https://chrome.google.com/webstore/detail/beknllkoddklgoflifhgkhkkibgkpdch)

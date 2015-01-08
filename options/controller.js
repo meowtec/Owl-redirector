@@ -9,7 +9,7 @@ var ruleTpl = {
 
 function owlController($scope, $timeout) {
   $scope.version = window.OWL.version || ''
-  $scope.rules = getData('rules')||[];
+  $scope.rules = getData('rules')||[]
   $scope.globalSetting = getData('global')||{
     enable: true
   }
@@ -18,12 +18,12 @@ function owlController($scope, $timeout) {
   $scope.trashCount = 0;
   $scope.rules.forEach(function(rule){
     if(rule.inTrash){
-      $scope.trashCount++;
+      $scope.trashCount++
     }
   })
 
   $scope.showAddClick = function(){
-    this.stage = angular.copy(ruleTpl);
+    this.stage = angular.copy(ruleTpl)
     this.editAble = true
     this.editType = 0
   }
@@ -34,34 +34,40 @@ function owlController($scope, $timeout) {
     item.dropping = true
     $timeout(function(){
       item.inTrash = true
-      $scope.trashCount ++;
-      $scope.latestTrash = item;
-      item.dropping = false;
+      $scope.trashCount ++
+      $scope.latestTrash = item
+      item.dropping = false
     }, 400)
 
   }
   $scope.editItemClick = function(item){
-    $scope.stage = angular.copy(item);
-    $scope.editAble = true;
-    $scope.editType = 1;
-    $scope.editingItem = item;
+    $scope.stage = angular.copy(item)
+    $scope.editAble = true
+    $scope.editType = 1
+    $scope.editingItem = item
   }
   $scope.editSubmitClick = function(){
     var stage = this.stage
+    var rules = this.rules
     if(!stage.url) return;
-    if(!stage.regex && !new RegExp('^[a-zA-Z]+:\/\/').test(stage.url)){
-      stage.url = 'http://' + stage.url
-    }
-    for(var i=0;i<this.rules.length;i++){
-      var rule = this.rules[i]
-      if(rule.url == stage.url && rule.regex == stage.regex){
-        // TODO exist
+    if(!stage.regex){
+      if(!new RegExp('^[a-zA-Z]+:\/\/').test(stage.url)){
+        stage.url = 'http://' + stage.url
+      }
+      if(!new RegExp('\:\/\/.*/').test(stage.url)){
+        stage.url = stage.url + '/'
       }
     }
-    if(this.editType == 0){
-      this.rules.push(stage);
+    if(this.editType === 0){
+      var exist = rules.some(function(rule, index) {
+        if(rule.url === stage.url && rule.regex === stage.regex && !rule.inTrash){
+          rules[index] = stage
+          return true
+        }
+      })
+      !exist && rules.push(stage)
     }else{
-      replaceItem(this.rules, this.editingItem, stage);
+      replaceItem(rules, this.editingItem, stage)
     }
     this.editAble = false
     saveData('rules', angular.copy(this.rules))

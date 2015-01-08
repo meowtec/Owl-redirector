@@ -9,7 +9,6 @@ function getData(name) {
 
 function saveData(name, data) {
   localStorage.setItem(name, angular.toJson(data));
-
   chrome.extension.sendRequest({
       ask: "reload",
       reload: name
@@ -28,11 +27,16 @@ function replaceItem(array, item, itemNew){
   array[index] = itemNew;
 }
 
-var specialChars = /[\^\$\(\)\[\]\{\}\.\?\+\*\|\\\/]/g
-var specialCharsSlash = /\\([\^\$\(\)\[\]\{\}\.\?\+\*\|\\])/g
-function str2reg(str){
-  return '^' + str.replace(specialChars, '\\$&') + '$'
-}
-function reg2str(regstr){
-  return regstr.replace(specialCharsSlash, '$1').replace(/^\^|\$$/g,'')
-}
+var str2reg = (function(){
+  var specialChars = /[\^\$\(\)\[\]\{\}\.\?\+\*\|\\\/]/g
+  return function str2reg(str){
+    return '^' + str.replace(specialChars, '\\$&') + '$'
+  }
+})()
+
+var reg2str = (function(){
+  var specialCharsSlash = /\\([\^\$\(\)\[\]\{\}\.\?\+\*\|\\])/g
+  return function reg2str(regstr){
+    return regstr.replace(specialCharsSlash, '$1').replace(/^\^|\$$/g,'')
+  }
+})()

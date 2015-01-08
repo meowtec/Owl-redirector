@@ -30,10 +30,10 @@ $(function(){
       }catch(e){}
 
       if(!data || !data.build){
-        alert('备份文件无效！')
+        alert(chrome.i18n.getMessage('importError'))
         return
       }
-      if(!window.confirm('请不要随便导入未知文件，除非你能够确定它是安全的。你确定导入该文件吗？')){
+      if(!window.confirm(chrome.i18n.getMessage('importWarn'))){
         return
       }
       var rules = []
@@ -65,4 +65,5 @@ $(function(){
     link.href = dataUrl
     link.click()
   })
+  $('#J-trash').html(chrome.i18n.getMessage('trash'))
 })

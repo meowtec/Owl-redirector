@@ -48,10 +48,14 @@ function owlController($scope, $timeout) {
   }
   $scope.editSubmitClick = function(){
     var stage = this.stage
+    if(!stage.url) return;
+    if(!stage.regex && !new RegExp('^[a-zA-Z]+:\/\/').test(stage.url)){
+      stage.url = 'http://' + stage.url
+    }
     for(var i=0;i<this.rules.length;i++){
       var rule = this.rules[i]
       if(rule.url == stage.url && rule.regex == stage.regex){
-        // repeat
+        // TODO exist
       }
     }
     if(this.editType == 0){

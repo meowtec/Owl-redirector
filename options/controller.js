@@ -148,13 +148,15 @@ function owlController($scope, $timeout) {
     author: chrome.i18n.getMessage('author'),
     homePage: chrome.i18n.getMessage('homePage'),
     version: chrome.i18n.getMessage('version'),
-    'import': '',
-    'export': '',
-    close: '',
-    url: '',
-    bodyData: '',
-    'function': '',
-    ruleEmptyTip: '还没有规则，点击上面的<i class="fontello">&#xe812;</i>按钮添加一个吧！',
-    addNew: '添加新规则'
+    'import': chrome.i18n.getMessage('import'),
+    'export': chrome.i18n.getMessage('export'),
+    close: chrome.i18n.getMessage('close'),
+    bodyData: chrome.i18n.getMessage('bodyData'),
+    'function': chrome.i18n.getMessage('function'),
+    ruleEmptyTip: chrome.i18n.getMessage('ruleEmptyTip'),
+    addNew: chrome.i18n.getMessage('addNew'),
+    regex: chrome.i18n.getMessage('regex'),
+    'delete': chrome.i18n.getMessage('delete'),
+    'edit': chrome.i18n.getMessage('edit')
   }
 }

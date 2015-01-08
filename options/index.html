@@ -7,10 +7,10 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 <link href="" rel="stylesheet">
-<script src="lib/jquery-2.1.1.min.js"></script>
-<script src="lib/angular.min.js"></script>
+<script src="lib/zepto.min.js"></script>
 <script src="utils.js"></script>
 <script src="index.js"></script>
+<script src="lib/angular.min.js"></script>
 <script src="filter.js"></script>
 <script src="controller.js"></script>
 <link rel="stylesheet" href="lib/css/iconfontello.css">
@@ -31,17 +31,13 @@
 </div>
 <div class="main-container" id="main-container">
   <div id="setting" class="main-section" style="display: block;">
-    <div class="rules-trash-menu" ng-class="{0: 'hide'}[trashCount]" id="J-trash">
-      <!--{{rules.trashCount}}-->
-      你删除了{{trashCount}}条，你可以<button ng-click="dealTrash(0)" class="icon-trash">清空</button>回收站，或者<button ng-click="dealTrash(1)" class="icon-ccw">恢复</button>这些删除。
-      <span  ng-show='latestTrash'>你也可以<button ng-click="dealTrash(2)" class="icon-history">取消</button>最近一次删除</span>
-    </div>
+    <div class="rules-trash-menu" ng-class="{0: 'hide'}[trashCount]" id="J-trash"><!--trash--></div>
     <h2 class="sub-header">{{messages.ruleListTitle}}</h2>
     <div class="rule-menu">
       <input type="checkbox" class="slide-checkbox"  ng-model="globalSetting.enable" title="{{messages.globalEnable[globalSetting.enable]}}">
       <button ng-click="showAddClick()" class="add-block-btn icon-doc-new-circled" title="{{messages.addNew}}"></button>
     </div>
-    <div ng-hide="rules.length-trashCount" class="rule-empty-tip">{{messages.ruleEmptyTip}}</div>
+    <div ng-hide="rules.length-trashCount" class="rule-empty-tip" ng-bind-html="messages.ruleEmptyTip | to_trusted"></div>
     <ul class="rule-list" ng-class="{true: '', false: 'disable'}[globalSetting.enable]">
       <li class="rule-item" ng-repeat="rule in rules | listFilter"  ng-class="{true: '', false: 'disable'}[rule.enable] + ' item-'+ {'url': 'url', 'function': 'function', 'data': 'data'}[rule.type] + {true: ' dropping'}[rule.dropping]">
         <div class="url-pattern" ng-class="{true: 'url-regex'}[rule.regex]">
@@ -52,8 +48,8 @@
           <div ng-hide="rule.replacer.length" class="replacer-empty">cancel</div>
         </div>
         <div class="item-control">
-          <button class="icon-trash rule-delete item-cicon" ng-click="deleteItemClick(rule)" title="删除"></button>
-          <button class="icon-edit-alt rule-edit item-cicon" ng-click="editItemClick(rule)" title="编辑"></button>
+          <button class="icon-trash rule-delete item-cicon" ng-click="deleteItemClick(rule)" title="{{messages.delete}}"></button>
+          <button class="icon-edit-alt rule-edit item-cicon" ng-click="editItemClick(rule)" title="{{messages.edit}}"></button>
           <input type="checkbox" class="day-night-checkbox" ng-model="rule.enable" title="{{messages.itemEnable[rule.enable]}}">
         </div>
       </li>
@@ -68,12 +64,12 @@
         <form>
           <div class="form-item">
             <input type="text" value="" class="text-input" placeholder="{{messages.regex[stage.regex]}}" ng-model="stage.url">
-            <input type="checkbox" id="url-isregex" class="checkbox-reg" ng-model="stage.regex" ng-change="regstrExchange()" title="正则">
+            <input type="checkbox" id="url-isregex" class="checkbox-reg" ng-model="stage.regex" ng-change="regstrExchange()" title="{{messages.regex}}">
           </div>
           <div class="form-item">
           <textarea class="replace-editor edit-{{stage.type}}" placeholder="{{messages.textareaplaceholder[stage.type]}}"  ng-model="stage.replacer"></textarea>
           <div class="replace-area-header">
-            <input type="radio" name="replacetype" value="url" class="icon-hash radio-icon" ng-model="stage.type" title="{{messages.url}}">
+            <input type="radio" name="replacetype" value="url" class="icon-hash radio-icon" ng-model="stage.type" title="URL">
             <input type="radio" name="replacetype" value="data" class="icon-doc-text radio-icon" ng-model="stage.type" title="{{messages.bodyData}}">
             <input type="radio" name="replacetype" value="function" class="icon-facebook radio-icon" ng-model="stage.type" title="{{messages['function']}}">
           </div>

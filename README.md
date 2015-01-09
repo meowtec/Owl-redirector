@@ -46,7 +46,9 @@ http://ajax.lug.ustc.edu.cn/ajax/libs/jquery/1.11.2/jquery.js
 
 ##### fc.5sing 跳转
 有一次我在网上找到一个翻唱链接，`http://fc.5sing.com/5936546.html`（这只是我临时找的，之前要找的早丢了），点进去发现访问不了。
+
 原来是 5sing 被酷狗收购了，新的链接地址应该是 `http://5sing.kugou.com/fc/5936546.html`。
+
 于是我添加了一条规则，让所有`fc.5sing.com`域名下的链接均能正常跳转到`5sing.kugou.com`域名。
 
 regexp:
@@ -67,7 +69,7 @@ function (url){
 
 regexp:
 ```
-^https?:\/\/(((ajax|fonts)\.googleapis\.com)|(themes\.googleusercontent\.com)|(fonts\.gstatic\.com))\/.*$
+^https?:\/\/(((ajax|fonts)\.googleapis\.com)|(themes\.googleusercontent\.com)|(fonts\.gstatic\.com))
 ```
 replacer(函数):
 ```
@@ -91,6 +93,7 @@ replacer(url):置空
 
 ### 内置方法
  - download()
+
  你可以在 replacer 函数中调用 download 方法，对资源进行下载操作，下面的实例表示在`music.qq.com`试听音乐时自动下载音频文件：
 
 
@@ -108,5 +111,7 @@ function (url){
 
 ### 导出和导入
 设置页面有`导出`和`导入`两个按钮，分别可以讲当前设置导出为`.bac`格式的文本文件，以及从`.bac`文件导入备份的设置。
+
 项目路径下有一个`示例备份`，里面包含本文档中的例子。
+
 **请不要随便导入未知文件，切记**

@@ -59,12 +59,18 @@ function owlController($scope, $timeout) {
       }
     }
     if(this.editType === 0){
+      var prevented
       var exist = rules.some(function(rule, index) {
         if(rule.url === stage.url && rule.regex === stage.regex && !rule.inTrash){
-          rules[index] = stage
+          if(confirm('已经存在相同的规则，确认要导入吗？')){
+            rules[index] = stage
+          }else{
+            prevented = true
+          }
           return true
         }
       })
+      if(prevented) return;
       !exist && rules.push(stage)
     }else{
       replaceItem(rules, this.editingItem, stage)

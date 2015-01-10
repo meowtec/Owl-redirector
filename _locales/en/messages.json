@@ -91,5 +91,8 @@
   },
   "edit": {
     "message": "edit"
+  },
+  "overwrite": {
+    "message": "Rule already exists, are you sure to overwrite it？"
   }
 }

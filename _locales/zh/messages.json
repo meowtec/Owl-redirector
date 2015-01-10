@@ -91,5 +91,8 @@
   },
   "edit": {
     "message": "编辑"
+  },
+  "overwrite": {
+    "message": "已经存在相同的规则，确认要导入吗？"
   }
 }

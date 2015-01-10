@@ -54,7 +54,7 @@ function owlController($scope, $timeout) {
       if(!new RegExp('^[a-zA-Z]+:\/\/').test(stage.url)){
         stage.url = 'http://' + stage.url
       }
-      if(!new RegExp('\:\/\/.*/').test(stage.url)){
+      if(!new RegExp(':\/\/.*/').test(stage.url)){
         stage.url = stage.url + '/'
       }
     }
@@ -62,7 +62,7 @@ function owlController($scope, $timeout) {
       var prevented
       var exist = rules.some(function(rule, index) {
         if(rule.url === stage.url && rule.regex === stage.regex && !rule.inTrash){
-          if(confirm('已经存在相同的规则，确认要导入吗？')){
+          if(confirm(chrome.i18n.getMessage('overwrite'))){
             rules[index] = stage
           }else{
             prevented = true

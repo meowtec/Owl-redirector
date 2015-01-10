@@ -66,7 +66,7 @@ function (url){
 
 regexp:
 ```
-^https?:\/\/(((ajax|fonts)\.googleapis\.com)|(themes\.googleusercontent\.com)|(fonts\.gstatic\.com))\/.*$
+^https?:\/\/(((ajax|fonts)\.googleapis\.com)|(themes\.googleusercontent\.com)|(fonts\.gstatic\.com))
 ```
 replacer(函数):
 ```
@@ -89,10 +89,11 @@ replacer(url):置空
 
 
 ### 内置方法
- - download()   
+ - download()
+
  你可以在 replacer 函数中调用 download 方法，对资源进行下载操作，下面的实例表示在`music.qq.com`试听音乐时自动下载音频文件：
- 
- 
+
+
 regexp:
 ```
 ^http:\/\/cc\.stream\.qqmusic\.qq\.com\/.*\.m4a.*$
@@ -106,6 +107,8 @@ function (url){
 ```
 
 ### 导出和导入
-设置页面有`导出`和`导入`两个按钮，分别可以讲当前设置导出为`.bac`格式的文本文件，以及从`.bac`文件导入备份的设置。   
-项目路径下有一个`示例备份`，里面包含本文档中的例子。   
+设置页面有`导出`和`导入`两个按钮，分别可以讲当前设置导出为`.bac`格式的文本文件，以及从`.bac`文件导入备份的设置。
+
+项目路径下有一个`示例备份`，里面包含本文档中的例子。
+
 **请不要随便导入未知文件，切记**

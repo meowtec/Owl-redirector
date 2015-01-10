@@ -7,7 +7,7 @@ function download(url) {
     //delete recursionDealCache[url]
     return
   }
-  console.log('%cdownload:', 'color:#03a9f4', url);
+  console.log('%cdownload:', 'color:#03a9f4', url)
   recursionDealCache[url] = true
   chrome.downloads.download({
     url: url
@@ -22,15 +22,15 @@ function loadData(name) {
   if (!name || name == 'rules') {
     var ruleList
     try {
-      ruleList = JSON.parse(localStorage.getItem('rules')) || [];
+      ruleList = JSON.parse(localStorage.getItem('rules')) || []
     } catch (e) {
       ruleList = []
     }
-    urlList = {};
-    regexList = {};
+    urlList = {}
+    regexList = {}
 
     for (var i = ruleList.length - 1; i >= 0; i--) {
-      var item = ruleList[i];
+      var item = ruleList[i]
       if (item.inTrash || item.enable == false) {
         continue
       }
@@ -50,7 +50,7 @@ function loadData(name) {
         urlList[item.url] = item
       }
       if (item.type == 'function') {
-        item.replacer = newFunction(item.replacer)
+        item.replacer = getEval(item.replacer)
       } else if (item.type == 'data') {
         item.replacer = toDataUrl(item.replacer)
       }
@@ -58,23 +58,23 @@ function loadData(name) {
   }
 
   if (!name || name == 'global') {
-    var globalSetting;
+    var globalSetting
     try {
       globalSetting = JSON.parse(localStorage.getItem('global')) || {}
     } catch (e) {
       globalSetting = {}
     }
     if (globalSetting.enable) {
-      ruleEnable();
+      ruleEnable()
     } else {
-      ruleDisable();
+      ruleDisable()
     }
   }
 }
-loadData();
+loadData()
 
 function replaceUrl(url, ruleItem) {
-  var item = ruleItem;
+  var item = ruleItem
   if (item.type == 'function') {
     var funcReturn = item.replacer(url)
     if (funcReturn === undefined) {
@@ -102,12 +102,12 @@ function beforeRequest(details) {
     }
   }
   if (redirectUrl === '' || redirectUrl === false) {
-    console.log('%ccancel:', 'color:red', url);
+    console.log('%ccancel:', 'color:red', url)
     return {
       cancel: true
     }
   } else if (redirectUrl && redirectUrl != url) {
-    console.log('%credirect:', 'color:#ffc107', url, '\n       ->', redirectUrl);
+    console.log('%credirect:', 'color:#ffc107', url, '\n       ->', redirectUrl)
     return {
       redirectUrl: redirectUrl
     }
@@ -116,21 +116,21 @@ function beforeRequest(details) {
 }
 
 function ruleEnable() {
-  ruleDisable();
-  chrome.webRequest.onBeforeRequest.addListener(beforeRequest, {urls: ["<all_urls>"]}, ["blocking"]);
+  ruleDisable()
+  chrome.webRequest.onBeforeRequest.addListener(beforeRequest, {urls: ["<all_urls>"]}, ["blocking"])
 }
 function ruleDisable() {
-  chrome.webRequest.onBeforeRequest.removeListener(beforeRequest);
+  chrome.webRequest.onBeforeRequest.removeListener(beforeRequest)
 }
 
 
 chrome.extension.onRequest.addListener(function (request, sender, sendResponse) {
   if (request.ask == 'reload') {
-    loadData(request.reload);
+    loadData(request.reload)
   }
-});
+})
 chrome.extension.onRequest.addListener(function (request, sender, sendResponse) {
   if (request.ask == 'reload') {
-    loadData(request.reload);
+    loadData(request.reload)
   }
-});
+})

@@ -15,7 +15,7 @@ function owlController($scope, $timeout) {
   }
   $scope.editAble = false
 
-  $scope.trashCount = 0;
+  $scope.trashCount = 0
   $scope.rules.forEach(function(rule){
     if(rule.inTrash){
       $scope.trashCount++
@@ -28,7 +28,7 @@ function owlController($scope, $timeout) {
     this.editType = 0
   }
   $scope.editCloseClick = function(){
-    this.editAble = false;
+    this.editAble = false
   }
   $scope.deleteItemClick = function(item){
     item.dropping = true
@@ -49,7 +49,7 @@ function owlController($scope, $timeout) {
   $scope.editSubmitClick = function(){
     var stage = this.stage
     var rules = this.rules
-    if(!stage.url) return;
+    if(!stage.url) return
     if(!stage.regex){
       if(!new RegExp('^[a-zA-Z]+:\/\/').test(stage.url)){
         stage.url = 'http://' + stage.url
@@ -70,7 +70,7 @@ function owlController($scope, $timeout) {
           return true
         }
       })
-      if(prevented) return;
+      if(prevented) return
       !exist && rules.push(stage)
     }else{
       replaceItem(rules, this.editingItem, stage)
@@ -90,18 +90,18 @@ function owlController($scope, $timeout) {
   }
   // 0清空， 1恢复
   $scope.dealTrash = function(type){
-    var rules = $scope.rules;
+    var rules = $scope.rules
 
     if(type == 0){
       $scope.rules = rules.filter(function(item){
         return !item.inTrash
       })
-      $scope.trashCount = 0;
+      $scope.trashCount = 0
     }else if(type == 1){
       rules.forEach(function(item){
         item.inTrash = false
       })
-      $scope.trashCount = 0;
+      $scope.trashCount = 0
     }else if(type == 2){
       if($scope.latestTrash){
         $scope.latestTrash.inTrash = false
@@ -112,18 +112,18 @@ function owlController($scope, $timeout) {
 
   $scope.$watch('globalSetting.enable',
     function(to, from){
-      saveData('global', $scope.globalSetting);
+      saveData('global', $scope.globalSetting)
     }
-  );
+  )
   $scope.$watch('rules',
     function(to, from){
       saveData('rules', angular.copy($scope.rules))
     },true
-  );
+  )
   $scope.regstrExchange = function(){
     var stage = $scope.stage
     var regex = stage.regex,
-      url = stage.url;
+      url = stage.url
     if(stage.url === ''){
       return
     }

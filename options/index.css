@@ -215,7 +215,7 @@ h1.nav-header{
 .item-control{
   padding: 5px 0 10px 0;
   opacity: 0.1;
-  /*transition: all ease 0.4s;*/
+  transition: all ease 0.2s;
   margin-top: 5px;
 }
 .rule-item:hover .item-control{

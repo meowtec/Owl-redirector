@@ -4,19 +4,19 @@ window.OWL = {
 }
 $(function(){
   $('body').on('mousedown', 'button,input[type="radio"]', function(e){
-    e.preventDefault();
+    e.preventDefault()
   })
   /*  nav  */
-  var $mainSections = $('#main-container .main-section');
-  var $navItems = $('#nav-list li');
+  var $mainSections = $('#main-container .main-section')
+  var $navItems = $('#nav-list li')
   $('#nav-list').on('click', 'button', function() {
-    var target = $(this).attr('tab-target');
-    $mainSections.hide();
-    $(target).show();
-    $navItems.removeClass('selected');
-    $(this).parent().addClass('selected');
-    $(window).focus();
-  });
+    var target = $(this).attr('tab-target')
+    $mainSections.hide()
+    $(target).show()
+    $navItems.removeClass('selected')
+    $(this).parent().addClass('selected')
+    $(window).focus()
+  })
 
   $('#J-backup-import input').change(function(){
     var file = $(this)[0].files[0]

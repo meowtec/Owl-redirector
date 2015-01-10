@@ -8,7 +8,7 @@ function getData(name) {
 }
 
 function saveData(name, data) {
-  localStorage.setItem(name, angular.toJson(data));
+  localStorage.setItem(name, angular.toJson(data))
   chrome.extension.sendRequest({
       ask: "reload",
       reload: name
@@ -18,13 +18,13 @@ function saveData(name, data) {
 function removeItem(array, item){
   var index = array.indexOf(item)
   if(index!=-1){
-    array.splice(index, 1);
+    array.splice(index, 1)
   }
 }
 
 function replaceItem(array, item, itemNew){
-  var index = array.indexOf(item);
-  array[index] = itemNew;
+  var index = array.indexOf(item)
+  array[index] = itemNew
 }
 
 var str2reg = (function(){

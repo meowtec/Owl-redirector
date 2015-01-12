@@ -58,6 +58,18 @@ function owlController($scope, $timeout) {
         stage.url = stage.url + '/'
       }
     }
+
+    if(stage.type === 'url'){
+      if(/\s/.test(stage.replacer) && !confirm(chrome.i18n.getMessage('replacerUrlWrap'))){
+        return
+      }
+      stage.replacer = stage.replacer.replace(/\s/g, '')
+    }
+
+    if(stage.type === 'function' && !testEvalFunc(stage.replacer)){
+      return alert(chrome.i18n.getMessage('functionError'))
+    }
+
     if(this.editType === 0){
       var prevented
       var exist = rules.some(function(rule, index) {

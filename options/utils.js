@@ -40,3 +40,20 @@ var reg2str = (function(){
     return regstr.replace(specialCharsSlash, '$1').replace(/^\^|\$$/g,'')
   }
 })()
+
+var getEval = (function(){
+  var getReturn = function (arg){
+    return arg
+  }
+  return function (str){
+    return eval('getReturn(' + str + ')')
+  }
+})()
+
+function testEvalFunc(str) {
+  var func
+  try{
+    func = getEval(str)
+  }catch(e){}
+  return typeof func === 'function'
+}

@@ -2,7 +2,7 @@ OWL
 ===
 Chrome 重定向工具
 
-[英文版翻译中](https://github.com/meowtec/Owl-redirector/blob/master/README_en.md)（作者英文渣）
+[英文版即将翻译中](https://github.com/meowtec/Owl-redirector/blob/master/README_en.md)（作者英文渣）
 ### 安装
  - 如果你可以翻墙，建议直接访问 [Chrome Webstore](https://chrome.google.com/webstore/detail/beknllkoddklgoflifhgkhkkibgkpdch)
  - 如果你翻不了墙，可以下载 [owl-redirector.crx](https://github.com/meowtec/Owl-redirector/blob/master/owl-redirector.crx?raw=true)，然后打开`扩展程序`页面，把`.crx`文件拖进去。
@@ -112,6 +112,6 @@ function (url){
 ### 导出和导入
 设置页面有`导出`和`导入`两个按钮，分别可以讲当前设置导出为`.bac`格式的文本文件，以及从`.bac`文件导入备份的设置。
 
-项目路径下有一个`示例备份`，里面包含本文档中的例子。
+#### 项目路径下有一个`示例备份`，里面包含本文档中的例子，你可以删掉或者关闭不需要的。
 
 **请不要随便导入未知文件，切记**

@@ -94,5 +94,11 @@
   },
   "overwrite": {
     "message": "Rule already exists, are you sure to overwrite it？"
+  },
+  "replacerUrlWrap": {
+    "message": "There is some newlines or spaces in the replacer. If you are sure that the replacer is an URL rather than a function, please click `OK`, then those newlines and spaces will be removed."
+  },
+  "functionError": {
+    "message": "Invalid function!"
   }
 }

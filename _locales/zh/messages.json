@@ -94,5 +94,11 @@
   },
   "overwrite": {
     "message": "已经存在相同的规则，确认要导入吗？"
+  },
+  "replacerUrlWrap": {
+    "message": "你的 replace URL 中存在换行符或空格，如果你确定它是一个 URL 而不是函数，请点击确定，系统将自动去除这些换行符以及空格。"
+  },
+  "functionError": {
+    "message": "你输入的函数语法不正确！"
   }
 }

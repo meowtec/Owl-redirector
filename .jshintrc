@@ -3,10 +3,10 @@
   "indent": 2,
   "smarttabs": true,
 
-  // 变量在使用前必须先声明，废弃的变量要及时清理掉
+  // 变量在使用前必须先声明
   "latedef": "nofunc",
   "undef": true,
-  "unused": true,
+  // "unused": true,
 
   // 行尾不要有空格
   "trailing": true,
@@ -39,8 +39,7 @@
   "-W065": true,
   "browser": true,
   "predef": [
-    "define",
-    "seajs"
+    "chrome", "angular", "$", "utils", "console"
   ],
   "lastsemic": true,
   "nonbsp": true,

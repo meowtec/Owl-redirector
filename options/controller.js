@@ -9,113 +9,117 @@ var ruleTpl = {
 
 function owlController($scope, $timeout) {
   $scope.version = window.OWL.version || ''
-  $scope.rules = getData('rules')||[]
-  $scope.globalSetting = getData('global')||{
+  $scope.rules = utils.getData('rules') || []
+  $scope.globalSetting = utils.getData('global') || {
     enable: true
   }
   $scope.editAble = false
 
   $scope.trashCount = 0
-  $scope.rules.forEach(function(rule){
-    if(rule.inTrash){
+  $scope.rules.forEach(function (rule) {
+    if (rule.inTrash) {
       $scope.trashCount++
     }
   })
 
-  $scope.showAddClick = function(){
+  $scope.showAddClick = function () {
     this.stage = angular.copy(ruleTpl)
     this.editAble = true
     this.editType = 0
   }
-  $scope.editCloseClick = function(){
+  $scope.editCloseClick = function () {
     this.editAble = false
   }
-  $scope.deleteItemClick = function(item){
+  $scope.deleteItemClick = function (item) {
     item.dropping = true
-    $timeout(function(){
+    $timeout(function () {
       item.inTrash = true
-      $scope.trashCount ++
+      $scope.trashCount++
       $scope.latestTrash = item
       item.dropping = false
     }, 400)
 
   }
-  $scope.editItemClick = function(item){
+  $scope.editItemClick = function (item) {
     $scope.stage = angular.copy(item)
     $scope.editAble = true
     $scope.editType = 1
     $scope.editingItem = item
   }
-  $scope.editSubmitClick = function(){
+  $scope.editSubmitClick = function () {
     var stage = this.stage
     var rules = this.rules
-    if(!stage.url) return
-    if(!stage.regex){
-      if(!new RegExp('^[a-zA-Z]+:\/\/').test(stage.url)){
+    if (!stage.url) {
+      return
+    }
+    if (!stage.regex) {
+      if (!new RegExp('^[a-zA-Z]+:\/\/').test(stage.url)) {
         stage.url = 'http://' + stage.url
       }
-      if(!new RegExp(':\/\/.*/').test(stage.url)){
+      if (!new RegExp(':\/\/.*/').test(stage.url)) {
         stage.url = stage.url + '/'
       }
     }
 
-    if(stage.type === 'url'){
-      if(/\s/.test(stage.replacer) && !confirm(chrome.i18n.getMessage('replacerUrlWrap'))){
+    if (stage.type === 'url') {
+      if (/\s/.test(stage.replacer) && !window.confirm(chrome.i18n.getMessage('replacerUrlWrap'))) {
         return
       }
       stage.replacer = stage.replacer.replace(/\s/g, '')
     }
 
-    if(stage.type === 'function' && !testEvalFunc(stage.replacer)){
-      return alert(chrome.i18n.getMessage('functionError'))
+    if (stage.type === 'function' && !utils.testEvalFunc(stage.replacer)) {
+      return window.alert(chrome.i18n.getMessage('functionError'))
     }
 
-    if(this.editType === 0){
+    if (this.editType === 0) {
       var prevented
-      var exist = rules.some(function(rule, index) {
-        if(rule.url === stage.url && rule.regex === stage.regex && !rule.inTrash){
-          if(confirm(chrome.i18n.getMessage('overwrite'))){
+      var exist = rules.some(function (rule, index) {
+        if (rule.url === stage.url && rule.regex === stage.regex && !rule.inTrash) {
+          if (window.confirm(chrome.i18n.getMessage('overwrite'))) {
             rules[index] = stage
-          }else{
+          } else {
             prevented = true
           }
           return true
         }
       })
-      if(prevented) return
+      if (prevented) {
+        return
+      }
       !exist && rules.push(stage)
-    }else{
-      replaceItem(rules, this.editingItem, stage)
+    } else {
+      utils.replaceItem(rules, this.editingItem, stage)
     }
     this.editAble = false
-    saveData('rules', angular.copy(this.rules))
+    utils.saveData('rules', angular.copy(this.rules))
   }
-  $scope.itemUrlClick = function(rule){
-    if(!rule.regex){
+  $scope.itemUrlClick = function (rule) {
+    if (!rule.regex) {
       window.open(rule.url)
     }
   }
-  $scope.itemReplacerClick = function(rule){
-    if(rule.type == 'url'){
+  $scope.itemReplacerClick = function (rule) {
+    if (rule.type === 'url') {
       window.open(rule.replacer)
     }
   }
   // 0清空， 1恢复
-  $scope.dealTrash = function(type){
+  $scope.dealTrash = function (type) {
     var rules = $scope.rules
 
-    if(type == 0){
-      $scope.rules = rules.filter(function(item){
+    if (type === 0) {
+      $scope.rules = rules.filter(function (item) {
         return !item.inTrash
       })
       $scope.trashCount = 0
-    }else if(type == 1){
-      rules.forEach(function(item){
+    } else if (type === 1) {
+      rules.forEach(function (item) {
         item.inTrash = false
       })
       $scope.trashCount = 0
-    }else if(type == 2){
-      if($scope.latestTrash){
+    } else if (type === 2) {
+      if ($scope.latestTrash) {
         $scope.latestTrash.inTrash = false
         $scope.trashCount--
       }
@@ -123,27 +127,27 @@ function owlController($scope, $timeout) {
   }
 
   $scope.$watch('globalSetting.enable',
-    function(to, from){
-      saveData('global', $scope.globalSetting)
+    function () {
+      utils.saveData('global', $scope.globalSetting)
     }
   )
   $scope.$watch('rules',
-    function(to, from){
-      saveData('rules', angular.copy($scope.rules))
-    },true
+    function () {
+      utils.saveData('rules', angular.copy($scope.rules))
+    }, true
   )
-  $scope.regstrExchange = function(){
+  $scope.regstrExchange = function () {
     var stage = $scope.stage
     var regex = stage.regex,
       url = stage.url
-    if(stage.url === ''){
+    if (url === '') {
       return
     }
 
-    if(regex === true){
-      stage.url = str2reg(stage.url)
-    }else{
-      stage.url = reg2str(stage.url)
+    if (regex === true) {
+      stage.url = utils.str2reg(url)
+    } else {
+      stage.url = utils.reg2str(url)
     }
   }
 
@@ -152,12 +156,12 @@ function owlController($scope, $timeout) {
     helpTitle: chrome.i18n.getMessage('helpTitle'),
     aboutTitle: chrome.i18n.getMessage('aboutTitle'),
     ruleListTitle: chrome.i18n.getMessage('ruleListTitle'),
-    textareaplaceholder: {
+    textareaPlaceholder: {
       'url': chrome.i18n.getMessage('textareaPlaceholder_url'),
       'function': chrome.i18n.getMessage('textareaPlaceholder_function'),
       'data': chrome.i18n.getMessage('textareaPlaceholder_data')
     },
-    regex: {
+    urlPlaceholder: {
       true: chrome.i18n.getMessage('inputPlaceholder_regex'),
       false: chrome.i18n.getMessage('inputPlaceholder_url')
     },
@@ -188,3 +192,5 @@ function owlController($scope, $timeout) {
     'edit': chrome.i18n.getMessage('edit')
   }
 }
+
+window.owlController = owlController

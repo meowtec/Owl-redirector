@@ -8,7 +8,7 @@
 <meta name="keywords" content="">
 <link href="" rel="stylesheet">
 <script src="lib/zepto.min.js"></script>
-<script src="utils.js"></script>
+<script src="../common/utils.js"></script>
 <script src="index.js"></script>
 <script src="lib/angular.min.js"></script>
 <script src="filter.js"></script>
@@ -63,11 +63,11 @@
         <button ng-click="editCloseClick()" class="box-close-btn icon-cancel-1" title="{{messages.close}}"></button>
         <form>
           <div class="form-item">
-            <input type="text" value="" class="text-input" placeholder="{{messages.regex[stage.regex]}}" ng-model="stage.url">
+            <input type="text" value="" class="text-input" placeholder="{{messages.urlPlaceholder[stage.regex]}}" ng-model="stage.url">
             <input type="checkbox" id="url-isregex" class="checkbox-reg" ng-model="stage.regex" ng-change="regstrExchange()" title="{{messages.regex}}">
           </div>
           <div class="form-item">
-          <textarea class="replace-editor edit-{{stage.type}}" placeholder="{{messages.textareaplaceholder[stage.type]}}"  ng-model="stage.replacer"></textarea>
+          <textarea class="replace-editor edit-{{stage.type}}" placeholder="{{messages.textareaPlaceholder[stage.type]}}"  ng-model="stage.replacer"></textarea>
           <div class="replace-area-header">
             <input type="radio" name="replacetype" value="url" class="icon-hash radio-icon" ng-model="stage.type" title="URL">
             <input type="radio" name="replacetype" value="data" class="icon-doc-text radio-icon" ng-model="stage.type" title="{{messages.bodyData}}">

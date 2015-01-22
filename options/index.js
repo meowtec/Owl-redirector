@@ -2,6 +2,7 @@ window.OWL = {
   version: '0.1.3',
   build: 3
 }
+
 $(function(){
   $('body').on('mousedown', 'button,input[type="radio"]', function(e){
     e.preventDefault()
@@ -30,7 +31,7 @@ $(function(){
       }catch(e){}
 
       if(!data || !data.build){
-        alert(chrome.i18n.getMessage('importError'))
+        window.alert(chrome.i18n.getMessage('importError'))
         return
       }
       if(!window.confirm(chrome.i18n.getMessage('importWarn'))){
@@ -59,7 +60,7 @@ $(function(){
       rules: rules
     }
     var text = JSON.stringify(data)
-    var dataUrl = 'data:text/plain;charset=utf-8;base64,' + btoa(unescape(encodeURIComponent(text)))
+    var dataUrl = utils.toDataUrl(text)
     var link = document.createElement('a')
     link.download = 'owl-' + new Date().toISOString() + '.bac'
     link.href = dataUrl

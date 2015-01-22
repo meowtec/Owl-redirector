@@ -1,10 +1,9 @@
-/* tools */
 /* download */
 // 解决 download request 的递归请求
 var recursionDealCache = {}
 function download(url) {
   if (recursionDealCache[url]) {
-    //delete recursionDealCache[url]
+    // TODO 是否移除 recursionDealCache[url]
     return
   }
   console.log('%cdownload:', 'color:#03a9f4', url)
@@ -19,7 +18,7 @@ var regexList = {}
 
 
 function loadData(name) {
-  if (!name || name == 'rules') {
+  if (!name || name === 'rules') {
     var ruleList
     try {
       ruleList = JSON.parse(localStorage.getItem('rules')) || []
@@ -31,7 +30,7 @@ function loadData(name) {
 
     for (var i = ruleList.length - 1; i >= 0; i--) {
       var item = ruleList[i]
-      if (item.inTrash || item.enable == false) {
+      if (item.inTrash || item.enable === false) {
         continue
       }
       if (item.regex) {
@@ -43,21 +42,21 @@ function loadData(name) {
 
       } else {
         item.url = item.url.split('#')[0] // remove hash
-        ;(new RegExp('\:\/\/.*/').test(item.url)) || (item.url = item.url + '/') // add '/' after host; e.g. `http://www.baidu.com` -> `http://www.baidu.com/`
+        ;(new RegExp(':\/\/.*/').test(item.url)) || (item.url = item.url + '/') // add '/' after host; e.g. `http://www.baidu.com` -> `http://www.baidu.com/`
         if (urlList[item.url]) {
           continue
         }
         urlList[item.url] = item
       }
-      if (item.type == 'function') {
-        item.replacer = getEval(item.replacer)
-      } else if (item.type == 'data') {
-        item.replacer = toDataUrl(item.replacer)
+      if (item.type === 'function') {
+        item.replacer = utils.getEval(item.replacer)
+      } else if (item.type === 'data') {
+        item.replacer = utils.toDataUrl(item.replacer)
       }
     }
   }
 
-  if (!name || name == 'global') {
+  if (!name || name === 'global') {
     var globalSetting
     try {
       globalSetting = JSON.parse(localStorage.getItem('global')) || {}
@@ -75,7 +74,7 @@ loadData()
 
 function replaceUrl(url, ruleItem) {
   var item = ruleItem
-  if (item.type == 'function') {
+  if (item.type === 'function') {
     var funcReturn = item.replacer(url)
     if (funcReturn === undefined) {
       return url
@@ -96,7 +95,7 @@ function beforeRequest(details) {
     for (var r in regexList) {
       var item = regexList[r]
       if (item.url.test(url)) {
-        var redirectUrl = replaceUrl(url, item)
+        redirectUrl = replaceUrl(url, item)
         break
       }
     }
@@ -106,7 +105,7 @@ function beforeRequest(details) {
     return {
       cancel: true
     }
-  } else if (redirectUrl && redirectUrl != url) {
+  } else if (redirectUrl && redirectUrl !== url) {
     console.log('%credirect:', 'color:#ffc107', url, '\n       ->', redirectUrl)
     return {
       redirectUrl: redirectUrl
@@ -124,13 +123,13 @@ function ruleDisable() {
 }
 
 
-chrome.extension.onRequest.addListener(function (request, sender, sendResponse) {
-  if (request.ask == 'reload') {
+chrome.extension.onRequest.addListener(function (request) {
+  if (request.ask === 'reload') {
     loadData(request.reload)
   }
 })
-chrome.extension.onRequest.addListener(function (request, sender, sendResponse) {
-  if (request.ask == 'reload') {
+chrome.extension.onRequest.addListener(function (request) {
+  if (request.ask === 'reload') {
     loadData(request.reload)
   }
 })

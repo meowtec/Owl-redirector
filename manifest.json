@@ -8,7 +8,7 @@
     "128": "owl.png"
   },
   "background": {
-    "scripts": ["background/utils.js","background/index.js"]
+    "scripts": ["common/utils.js","background/index.js"]
   },
   "options_page": "options/index.html",
   "homepage_url": "https://github.com/meowtec/Owl-redirector",

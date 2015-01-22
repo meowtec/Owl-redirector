@@ -1,0 +1,48 @@
+{
+  // 2 空格缩进
+  "indent": 2,
+  "smarttabs": true,
+
+  // 变量在使用前必须先声明，废弃的变量要及时清理掉
+  "latedef": "nofunc",
+  "undef": true,
+  "unused": true,
+
+  // 行尾不要有空格
+  "trailing": true,
+
+  // 在行尾使用逗号，而非行首
+  "laxcomma": false,
+
+  // 语句块必须使用大括号包裹
+  "curly": true,
+
+  // 判断相等使用 ===，接受 `== null`
+  "eqeqeq": true,
+  "eqnull": true,
+
+  // 不限制是否使用分号
+  "asi": true,
+
+  // 支持 `if (foo = bar) {}` 这样的写法
+  "boss": true,
+
+  // 支持 `options || (options = {})` 这样的写法
+  "expr": true,
+
+  // 同时支持 `hash['key']` 和 `hash.key`
+  "sub": true,
+
+  "evil": true,
+  // 直接忽略 `parseInt()` 相关的警告
+  // Refer to http://jslinterrors.com/missing-radix-parameter/
+  "-W065": true,
+  "browser": true,
+  "predef": [
+    "define",
+    "seajs"
+  ],
+  "lastsemic": true,
+  "nonbsp": true,
+  "multistr": true
+}

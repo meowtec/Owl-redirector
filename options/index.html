@@ -8,6 +8,7 @@
 <meta name="keywords" content="">
 <link href="" rel="stylesheet">
 <script src="lib/zepto.min.js"></script>
+<script src="../common/info.js"></script>
 <script src="../common/utils.js"></script>
 <script src="index.js"></script>
 <script src="lib/angular.min.js"></script>
@@ -40,8 +41,8 @@
     <div ng-hide="rules.length-trashCount" class="rule-empty-tip" ng-bind-html="messages.ruleEmptyTip | to_trusted"></div>
     <ul class="rule-list" ng-class="{true: '', false: 'disable'}[globalSetting.enable]">
       <li class="rule-item" ng-repeat="rule in rules | listFilter"  ng-class="{true: '', false: 'disable'}[rule.enable] + ' item-'+ {'url': 'url', 'function': 'function', 'data': 'data'}[rule.type] + {true: ' dropping'}[rule.dropping]">
-        <div class="url-pattern" ng-class="{true: 'url-regex'}[rule.regex]">
-          <span ng-click="itemUrlClick(rule)" class="url-text">{{rule.url}}</span>
+        <div class="url-pattern">
+          <span ng-click="itemUrlClick(rule)" class="url-text">{{rule.$url}}</span>
         </div>
         <div class="url-replace">
           <pre ng-click="itemReplacerClick(rule)" class="replace-text">{{rule.replacer}}</pre>
@@ -58,13 +59,13 @@
       <button id="J-backup-import">{{messages.import}}<input type="file"></button>
       <button id="J-backup-export">{{messages.export}}</button>
     </div>
-    <div class="edit-container-overlay hide" ng-class="{true: '', false: 'hide'}[editAble]">
+    <div class="edit-container-overlay hide" ng-class="{true: '', false: 'hide'}[editBoxShow]">
       <div class="edit-container">
         <button ng-click="editCloseClick()" class="box-close-btn icon-cancel-1" title="{{messages.close}}"></button>
         <form>
           <div class="form-item">
-            <input type="text" value="" class="text-input" placeholder="{{messages.urlPlaceholder[stage.regex]}}" ng-model="stage.url">
-            <input type="checkbox" id="url-isregex" class="checkbox-reg" ng-model="stage.regex" ng-change="regstrExchange()" title="{{messages.regex}}">
+            <input type="text" value="" class="text-input" placeholder="{{messages.urlPlaceholder[stage.regex]}}" ng-model="stage.$url">
+            <button type="button" id="url-to-reg" class="button-reg" ng-click="toRegex()" title="{{messages.regex}}"></button>
           </div>
           <div class="form-item">
           <textarea class="replace-editor edit-{{stage.type}}" placeholder="{{messages.textareaPlaceholder[stage.type]}}"  ng-model="stage.replacer"></textarea>

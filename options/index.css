@@ -336,29 +336,33 @@ h1.nav-header{
 .replace-editor.edit-function{
   font-family: monaco, consolas;
 }
-.checkbox-reg{
+.button-reg{
   -webkit-appearance: none;
   appearance: none;
   outline: none;
   padding: 0;
   margin: 0;
+  border: none;
+  background: none;
 }
 
-.checkbox-reg:before{
+.button-reg:before{
   content: '[.*]';
   font-size: 10px;
   margin-left: 5px;
   color:#999;
-  box-shadow: inset 0 0 1px rgba(0,0,0,0.05);
+  box-shadow: inset 0 0 1px rgba(0,0,0,0.15);
   width:24px;height:24px;
   text-align: center;
   line-height: 24px;
   display: inline-block;
 }
-.checkbox-reg:checked:before{
-  color:#333;
-  box-shadow: inset 0 0 2px rgba(0,0,0,0.1);
-  background: #eee;
+.button-reg:hover:before{
+  background: rgb(250, 250, 250);
+}
+.button-reg:active:before{
+  background: rgb(250, 250, 250);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.15);
 }
 
 .text-input{

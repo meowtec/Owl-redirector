@@ -38,8 +38,9 @@
   // Refer to http://jslinterrors.com/missing-radix-parameter/
   "-W065": true,
   "browser": true,
+  "node": true,
   "predef": [
-    "chrome", "angular", "$", "utils", "console"
+    "chrome", "angular", "$", "utils", "console", "OWL"
   ],
   "lastsemic": true,
   "nonbsp": true,

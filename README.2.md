@@ -2,11 +2,10 @@ OWL
 ===
 Chrome 重定向工具
 
-[英文版即将翻译中](https://github.com/meowtec/Owl-redirector/blob/master/README_en.md)（作者英文渣）
 ### 安装
  - 如果你可以翻墙，建议直接访问 [Chrome Webstore](https://chrome.google.com/webstore/detail/beknllkoddklgoflifhgkhkkibgkpdch)
  - 如果你翻不了墙，可以下载 [owl-redirector.crx](https://github.com/meowtec/Owl-redirector/blob/master/owl-redirector.crx?raw=true)，然后打开`扩展程序`页面，把`.crx`文件拖进去。
- - 如果前两种方法无效，请直接下载这个项目文件，再以开发者模式加载，网上很多教程，此处略。
+ - 如果前两种方法无效，请直接下载这个项目文件，然后以开发者模式加载，网上很多教程，此处略。
 
 ### 使用
 #### 主界面
@@ -19,20 +18,21 @@ Chrome 重定向工具
 #### 编辑界面
 ![screen2](http://meowtec.github.io/assets/owl/screen2.png)
 
- - 第一个输入框输入替换前的 url 或者正则。右边的图标`[.*]`决定你输入的应该是一个普通 url （普通模式）还是一条正则表达式（正则模式），默认情况下应该输入普通的 url，此时图标是未选中的。
-  - 普通模式下，只有当链接完全匹配时，url才会被重定向（或阻止）。
-  - 正则模式下，如果浏览器访问的链接可以匹配你的正则，会被重定向。
-
->
-  - 由于链接中`.`等特殊字符比较多，银耳系统提供了 `url` 转正则的功能。即普通模式下输入一条 url，然后点`[.*]`切换到正则模式，此 url 会自动被转化为正则表达式。
-  - 正则不需要加前后的斜杠。
-
- - 下面的大输入框中输入替换后的链接，右边有三个按钮，分别是 `普通链接`,`文本内容`，`函数`
+ - 第一个输入框，输入你需要 redirect 或者阻止的 url，如果你需要屏蔽一组特定格式的 url，可以输入正则或者 URL Match。
+ - 右侧的`[.*]`按钮可以把你输入的字符串转化为恒等的正则表达式，url 中通常有很多特殊字符，使用这个按钮可以快速转义它们。
+ - 第二个输入框中输入的内容以右侧 CheckBox 选中的模式为准，三种模式分别是 `普通链接`,`文本内容`，`函数`：
   1. `普通链接`：请求会被自动重定向到此链接。
-  2. `文本内容`：程序将这段文本编码为 dataURL，然后将请求重定向到 此 dataURL。适合需要修改外链`css`/`js`(含jsonp)的情况。由于 `ajax` 的跨域特性，此方式并不能修改 ajax 请求返回内容。
+  2. `文本内容`：程序将这段文本编码为 dataURL，然后将请求重定向到此 dataURL。适合需要修改外链`css`/`js`(含jsonp)的情况。由于 `ajax` 的跨域特性，此方式并不能修改 ajax 请求返回内容。
   3. `函数`：在这里填入一个函数，函数参数为替换前的 url，函数返回值为替换后的 url。如果需要阻止请求，需要返回 `false`。
 
+#### 函数返回值
+ - 如果返回普通字符串，程序认为它是一个链接，则请求被重定向到这个链接；
+ - 如果返回 false，请求会被阻止；
+ - 如果返回 undefined/null，或者返回原 url，直接请求。
+
 ### 实例
+
+下载项目路径下的`示例备份`文件，里面有很多例子。
 ##### jquery.min.js 去 `min`
 我们以 `jQuery` 官网为例，为了节省流量，jQuery 官网使用的是压缩后的 `jQuery.min.js` 文件，我们添加一条规则，把`jquery.min.js`重定向到`jquery.js`:
 url:
@@ -51,9 +51,9 @@ http://ajax.lug.ustc.edu.cn/ajax/libs/jquery/1.11.2/jquery.js
 
 于是我添加了一条规则，让所有`fc.5sing.com`域名下的链接均能正常跳转到`5sing.kugou.com`域名。
 
-regexp:
+url:
 ```
-^http:\/\/fc\.5sing\.com\/(\d+)\.html.*$
+http://5sing.kugou.com/fc/*
 ```
 replacer(函数):
 ```
@@ -67,9 +67,9 @@ function (url){
 
 #### google web fonts 替换为 ustc.edu.cn
 
-regexp:
+url:
 ```
-^https?:\/\/(((ajax|fonts)\.googleapis\.com)|(themes\.googleusercontent\.com)|(fonts\.gstatic\.com))
+/^https?:\/\/(((ajax|fonts)\.googleapis\.com)|(themes\.googleusercontent\.com)|(fonts\.gstatic\.com))/
 ```
 replacer(函数):
 ```
@@ -80,15 +80,13 @@ function (url){
 }
 ```
 
-
-
 #### 干掉谷歌统计：
 
 url:
 ```
 http://www.google-analytics.com/analytics.js
 ```
-replacer(url):置空
+replacer(url): 置空
 
 
 ### 内置方法
@@ -99,19 +97,16 @@ replacer(url):置空
 
 regexp:
 ```
-^http:\/\/cc\.stream\.qqmusic\.qq\.com\/.*\.m4a.*$
+http://cc.stream.qqmusic.qq.com/*.m4a*
 ```
 replacer(函数):
 ```
 function (url){
-  // 如果函数返回值为 undefined 则不会重定向
   download(url)
 }
 ```
 
 ### 导出和导入
-设置页面有`导出`和`导入`两个按钮，分别可以讲当前设置导出为`.bac`格式的文本文件，以及从`.bac`文件导入备份的设置。
+设置页面有`导出`和`导入`两个按钮，分别可以讲当前设置导出为`.bac`格式的文本文件、从`.bac`文件导入备份的设置。
 
-#### 项目路径下有一个`示例备份`，里面包含本文档中的例子，你可以删掉或者关闭不需要的。
-
-**请不要随便导入未知文件，切记**
+**!!! 请不要随便导入未知文件，切记 !!!**

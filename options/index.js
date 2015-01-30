@@ -78,3 +78,10 @@ $(function () {
   })
   $('#J-trash').html(chrome.i18n.getMessage('trash'))
 })
+
+// 应用升级时需要重新加载 options 页面
+chrome.extension.onRequest.addListener(function (request) {
+  if (request.ask === 'reload') {
+    location.reload()
+  }
+})

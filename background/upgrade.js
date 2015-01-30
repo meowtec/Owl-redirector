@@ -12,6 +12,13 @@
       rule.urlType = rule.regex ? 'regex' : 'url'
       delete rule.regex
     })
+
+    // 通知 options 页面重新加载
+    setTimeout(function(){
+      chrome.extension.sendRequest({
+        ask: 'reload'
+      })
+    },0)
   }
 
   if (globalSetting.enable === undefined) {

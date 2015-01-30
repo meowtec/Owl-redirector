@@ -81,11 +81,11 @@
     if (item.type === 'function') {
       var funcReturn = item.replacer(url)
       // 重定向
-      if(funcReturn && typeof funcReturn === 'string' && funcReturn !== url) {
+      if (funcReturn && typeof funcReturn === 'string' && funcReturn !== url) {
         return funcReturn
       }
       // 阻止
-      if(funcReturn === '' || funcReturn === false) {
+      if (funcReturn === '' || funcReturn === false) {
         return false
       }
       // 其他情况通过

@@ -14,11 +14,11 @@
     })
 
     // 通知 options 页面重新加载
-    setTimeout(function(){
+    setTimeout(function () {
       chrome.extension.sendRequest({
         ask: 'reload'
       })
-    },0)
+    }, 0)
   }
 
   if (globalSetting.enable === undefined) {

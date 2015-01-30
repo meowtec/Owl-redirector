@@ -42,7 +42,7 @@ $(function () {
       }
 
       // >= 0.1.3 升级到 0.2.0
-      if(data.build <= 3 ){
+      if (data.build <= 3) {
         data.rules.forEach(function (rule) {
           rule.urlType = rule.regex ? 'regex' : 'url'
           delete rule.regex

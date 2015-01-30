@@ -42,9 +42,10 @@
 
     testEvalFunc: function (str) {
       var result
-      try{
+      try {
         result = this.getEval(str)
-      }catch(e){}
+      } catch (e) {
+      }
       return typeof result === 'function'
     },
 
@@ -90,9 +91,9 @@
 
     getReg: function (str) {
       var reg
-      try{
+      try {
         reg = new RegExp(str)
-      }catch (e){
+      } catch (e) {
         console.warn('正则表达式' + str + '有问题')
       }
       return reg

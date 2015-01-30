@@ -80,23 +80,31 @@
     }
     if (item.type === 'function') {
       var funcReturn = item.replacer(url)
-      if (funcReturn === undefined) {
-        return url
-      } else {
+      // 重定向
+      if(funcReturn && typeof funcReturn === 'string' && funcReturn !== url) {
         return funcReturn
       }
+      // 阻止
+      if(funcReturn === '' || funcReturn === false) {
+        return false
+      }
+      // 其他情况通过
+
     } else {
       return item.replacer
     }
   }
 
+  // 获取匹配的规则
   function getMatchItem(url) {
+    // 先从 URL 列表中掉
     if (urlList[url]) {
       return urlList[url]
     }
+    // 再从匹配列表中找
     for (var i = 0; i < patternList.length; i++) {
       var item = patternList[i]
-      if ((item.urlType === 'regex' || item.urlType === 'url-match') && item.url.test(url)) {
+      if (item.url.test(url)) {
         return item
       }
     }
@@ -105,17 +113,21 @@
   function beforeRequest(details) {
     var url = details.url.split('#')[0]
     var redirectUrl = replaceUrl(url, getMatchItem(url))
-    if (redirectUrl === '' || redirectUrl === false) {
-      console.log('%ccancel:', 'color:red', url)
-      return {
-        cancel: true
-      }
-    } else if (redirectUrl && redirectUrl !== url) {
+    // 重定向
+    if (redirectUrl) {
       console.log('%credirect:', 'color:#ffc107', url, '\n        ->', redirectUrl)
       return {
         redirectUrl: redirectUrl
       }
     }
+    // 被阻止
+    if (redirectUrl === false) {
+      console.log('%ccancel:', 'color:red', url)
+      return {
+        cancel: true
+      }
+    }
+    // 直接请求
     console.log('%cdirect:', 'color:#8bc34a', url)
   }
 

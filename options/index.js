@@ -2,10 +2,12 @@ $(function () {
   $('body').on('mousedown', 'button,input[type="radio"]', function (e) {
     e.preventDefault()
   })
+
   /*  nav  */
-  var $mainSections = $('#main-container .main-section')
-  var $navItems = $('#nav-list li')
-  $('#nav-list').on('click', 'button', function () {
+  var $mainSections = $('#main-container').find('.main-section')
+  var $nav = $('#nav-list')
+  var $navItems = $nav.find('li')
+  $nav.on('click', 'button', function () {
     var target = $(this).attr('tab-target')
     $mainSections.hide()
     $(target).show()
@@ -14,7 +16,7 @@ $(function () {
     $(window).focus()
   })
 
-  $('#J-backup-import input').change(function () {
+  $('#J-backup-import').find('input').change(function () {
     var file = $(this)[0].files[0]
     var reader = new FileReader()
     reader.readAsText(file)

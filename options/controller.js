@@ -65,6 +65,11 @@
 
       var pattern = utils.getPattern(stage.$url)
 
+      // 如果是正则，则需要检查是否合法
+      if(pattern.type === 'regex' && !utils.getReg(pattern.data)){
+        return alert('你输入的正则不合法！')
+      }
+
       stage.url = pattern.data
       stage.urlType = pattern.type
 

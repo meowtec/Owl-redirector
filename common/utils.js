@@ -40,6 +40,14 @@
       return eval('(' + str + ')')
     },
 
+    testEvalFunc: function (str) {
+      var result
+      try{
+        result = this.getEval(str)
+      }catch(e){}
+      return typeof result === 'function'
+    },
+
     toDataUrl: function (str) {
       return 'data:text/plain;charset=utf-8,' + encodeURIComponent(str)
     },
@@ -78,6 +86,16 @@
 
     reg2str: function (regstr) {
       return regstr.replace(/\\([\^\$\(\)\[\]\{\}\.\?\+\*\|\\])/g, '$1').replace(/^\^|\$$/g, '')
+    },
+
+    getReg: function (str) {
+      var reg
+      try{
+        reg = new RegExp(str)
+      }catch (e){
+        console.warn('正则表达式' + str + '有问题')
+      }
+      return reg
     },
 
     // 判断字符串是 regex, url-pattern 还是 url

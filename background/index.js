@@ -47,12 +47,7 @@
 
           // 如果是 regex pattern, 则转化为 RegExp 对象
           if (item.urlType === 'regex') {
-            try {
-              item.url = new RegExp(item.url)
-            } catch (e) {
-              console.warn('正则表达式 ' + item.url + ' 异常')
-              item.url = /^$/
-            }
+            item.url = utils.getReg(item.url) || /^$/
           }
 
           // 如果是 url match pattern, 则转化为 UrlMatch

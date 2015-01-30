@@ -162,10 +162,7 @@
         'function': chrome.i18n.getMessage('textareaPlaceholder_function'),
         'data': chrome.i18n.getMessage('textareaPlaceholder_data')
       },
-      urlPlaceholder: {
-        true: chrome.i18n.getMessage('inputPlaceholder_regex'),
-        false: chrome.i18n.getMessage('inputPlaceholder_url')
-      },
+      urlPlaceholder: '输入URL/正则/URLMatch',
       submitButton: {
         0: chrome.i18n.getMessage('add'),
         1: chrome.i18n.getMessage('update')

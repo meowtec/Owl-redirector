@@ -66,7 +66,7 @@ http://ajax.lug.ustc.edu.cn/ajax/libs/jquery/1.11.2/jquery.js
 
 url:
 ```
-http://5sing.kugou.com/fc/*
+http://fc.5sing.com/*
 ```
 replacer(函数):
 ```
@@ -107,7 +107,7 @@ replacer(url): 置空
 
 url:
 ```
-http://cc.stream.qqmusic.qq.com/*.m4a*
+http://*.stream.qqmusic.qq.com/*.m4a*
 ```
 replacer(函数):
 ```

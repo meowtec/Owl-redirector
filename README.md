@@ -9,14 +9,14 @@ Chrome 重定向工具
 
 ### 使用
 #### 主界面
-![screen1](http://meowtec.github.io/assets/owl/screen1_1.png)
+![screen1](http://meowtec.github.io/assets/owl/screen1_2.png)
 
  - 右上角是全局开关，启用状态为蓝色，禁用状态为灰色。
  - 左侧是规则列表，目前只有一条规则。如果规则被禁用，它的颜色会变淡。
  - 下面的三个图标分别是删除、编辑和禁用按钮。
 
 #### 编辑界面
-![screen2](http://meowtec.github.io/assets/owl/screen2_1.png)
+![screen2](http://meowtec.github.io/assets/owl/screen2_2.png)
 
  - 第一个输入框，输入你需要 redirect 或者阻止的 url，如果你需要屏蔽一组特定格式的 url，可以输入正则或者 URL Match。
  - 右侧的`[.*]`按钮可以把你输入的字符串转化为恒等的正则表达式，url 中通常有很多特殊字符，使用这个按钮可以快速转义它们。

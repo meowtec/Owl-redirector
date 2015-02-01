@@ -20,11 +20,8 @@
   "textareaPlaceholder_data": {
     "message": "输入新的 body 数据。此数据将被编码为 data URL，并将原来的请求重定向到这个 data URL。\n你可以使用此功能直接修改网页中的外链 css 或者 js（含 jsonp）。\n由于 ajax 默认不能跨域访问 data URL，你无法使用本功能直接修改 ajax 数据。"
   },
-  "inputPlaceholder_regex": {
-    "message": "输入正则，符合此正则的请求将被重定向"
-  },
-  "inputPlaceholder_url": {
-    "message": "输入url，此url将被重定向"
+  "urlPlaceholder": {
+    "message": "输入URL/正则/URLMatch"
   },
   "add": {
     "message": "添加"
@@ -100,5 +97,14 @@
   },
   "functionError": {
     "message": "你输入的函数语法不正确！"
+  },
+  "regexError": {
+    "message": "你输入的正则不合法！"
+  },
+  "noLongerShow": {
+    "message": "不再提醒"
+  },
+  "upgradeTip": {
+    "message": "你的 OWL 已升级到 v{{version}}, 此版本在使用上有一些变化。<br>请访问 <a href=\"{{github}}\" target=\"_blank\">Github 主页</a> 查看详细说明。"
   }
 }

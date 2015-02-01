@@ -59,8 +59,8 @@
       <button id="J-backup-import">{{messages.import}}<input type="file"></button>
       <button id="J-backup-export">{{messages.export}}</button>
     </div>
-    <div class="edit-container-overlay hide" ng-class="{true: '', false: 'hide'}[editBoxShow]">
-      <div class="edit-container">
+    <div class="mask-overlay" ng-show="editBoxShow">
+      <div class="dialog edit-container">
         <button ng-click="editCloseClick()" class="box-close-btn icon-cancel-1" title="{{messages.close}}"></button>
         <form>
           <div class="form-item">
@@ -79,6 +79,15 @@
           <button class="submit-button" ng-click="editSubmitClick()">{{messages.submitButton[editType]}}</button>
         </div>
         </form>
+      </div>
+    </div>
+
+    <div class="mask-overlay" ng-hide="globalSetting.introShowed">
+      <div class="dialog">
+        <p class="dialog-content" ng-bind-html="messages.upgradeTip|to_trusted"></p>
+        <div class="dialog-buttons">
+          <button class="button-normal" ng-click="hideIntro()">{{messages.noLongerShow}}</button>
+        </div>
       </div>
     </div>
   </div>

@@ -20,11 +20,8 @@
   "textareaPlaceholder_data": {
     "message": "A piece of data, which will be encoded to a Data-URL, then the request will be redirected to the Data-URL.\nYou can use it to modify your css or js imported with <link> or <script>."
   },
-  "inputPlaceholder_regex": {
-    "message": "Regexp to redirected"
-  },
-  "inputPlaceholder_url": {
-    "message": "URL to redirected"
+  "urlPlaceholder": {
+    "message": "URL/RegEx/URLMatch"
   },
   "add": {
     "message": "Add"
@@ -100,5 +97,14 @@
   },
   "functionError": {
     "message": "Invalid function!"
+  },
+  "regexError": {
+    "message": "Invalid Regex!"
+  },
+  "noLongerShow": {
+    "message": "No Longer Remind"
+  },
+  "upgradeTip": {
+    "message": "Your OWL has upgraded to v{{version}}, to get more help。<br>please visit <a href=\"{{github}}\" target=\"_blank\">Github</a>。"
   }
 }

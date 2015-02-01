@@ -37,9 +37,11 @@
       this.editBoxShow = true
       this.editType = 0
     }
+
     $scope.editCloseClick = function () {
       this.editBoxShow = false
     }
+
     $scope.deleteItemClick = function (item) {
       item.dropping = true
       $timeout(function () {
@@ -48,14 +50,20 @@
         $scope.latestTrash = item
         item.dropping = false
       }, 400)
-
     }
+
     $scope.editItemClick = function (item) {
       $scope.stage = angular.copy(item)
       $scope.editBoxShow = true
       $scope.editType = 1
       $scope.editingItem = item
     }
+
+    $scope.hideIntro = function () {
+      $scope.globalSetting.introShowed = true
+
+    }
+
     $scope.editSubmitClick = function () {
       var stage = this.stage
       var rules = this.rules
@@ -67,7 +75,7 @@
 
       // 如果是正则，则需要检查是否合法
       if (pattern.type === 'regex' && !utils.getReg(pattern.data)) {
-        return alert('你输入的正则不合法！')
+        return alert(chrome.i18n.getMessage('regexError'))
       }
 
       stage.url = pattern.data
@@ -106,16 +114,19 @@
       this.editBoxShow = false
       utils.saveData('rules', angular.copy(this.rules))
     }
+
     $scope.itemUrlClick = function (rule) {
       if (rule.urlType === 'url') {
         window.open(rule.url)
       }
     }
+
     $scope.itemReplacerClick = function (rule) {
       if (rule.type === 'url') {
         window.open(rule.replacer)
       }
     }
+
     // 0清空， 1恢复
     $scope.dealTrash = function (type) {
       var rules = $scope.rules
@@ -138,16 +149,18 @@
       }
     }
 
-    $scope.$watch('globalSetting.enable',
+    $scope.$watch('globalSetting',
       function () {
         utils.saveData('global', $scope.globalSetting)
-      }
+      }, true
     )
+
     $scope.$watch('rules',
       function () {
         utils.saveData('rules', angular.copy($scope.rules))
       }, true
     )
+
     $scope.toRegex = function () {
       $scope.stage.$url = '/' + utils.str2reg($scope.stage.$url || '') + '/'
     }
@@ -162,7 +175,7 @@
         'function': chrome.i18n.getMessage('textareaPlaceholder_function'),
         'data': chrome.i18n.getMessage('textareaPlaceholder_data')
       },
-      urlPlaceholder: '输入URL/正则/URLMatch',
+      urlPlaceholder: chrome.i18n.getMessage('urlPlaceholder'),
       submitButton: {
         0: chrome.i18n.getMessage('add'),
         1: chrome.i18n.getMessage('update')
@@ -187,9 +200,13 @@
       addNew: chrome.i18n.getMessage('addNew'),
       regex: chrome.i18n.getMessage('regex'),
       'delete': chrome.i18n.getMessage('delete'),
-      'edit': chrome.i18n.getMessage('edit')
+      'edit': chrome.i18n.getMessage('edit'),
+      'noLongerShow': chrome.i18n.getMessage('noLongerShow'),
+      'upgradeTip': chrome.i18n.getMessage('upgradeTip')
+        .replace('{{github}}', 'https://github.com/meowtec/Owl-redirector')
+        .replace('{{version}}', OWL.version)
     }
   }
-
   this.owlController = owlController
+
 }).call(this)

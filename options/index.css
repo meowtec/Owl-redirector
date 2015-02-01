@@ -266,17 +266,10 @@ h1.nav-header {
   color: #333;
 }
 
-.url-pattern.url-regex {
-  color: #fb8c00;
-}
-
-.url-pattern .url-text {
+.url-pattern.url {
   cursor: pointer;
 }
 
-.url-pattern.url-regex .url-text {
-  cursor: auto;
-}
 
 .rule-list .replacer-empty {
   color: #333;

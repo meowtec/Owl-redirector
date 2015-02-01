@@ -107,7 +107,7 @@
       utils.saveData('rules', angular.copy(this.rules))
     }
     $scope.itemUrlClick = function (rule) {
-      if (!rule.regex) {
+      if (rule.urlType === 'url') {
         window.open(rule.url)
       }
     }

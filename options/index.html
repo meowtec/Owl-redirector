@@ -41,7 +41,7 @@
     <div ng-hide="rules.length-trashCount" class="rule-empty-tip" ng-bind-html="messages.ruleEmptyTip | to_trusted"></div>
     <ul class="rule-list" ng-class="{true: '', false: 'disable'}[globalSetting.enable]">
       <li class="rule-item" ng-repeat="rule in rules | listFilter"  ng-class="{true: '', false: 'disable'}[rule.enable] + ' item-'+ {'url': 'url', 'function': 'function', 'data': 'data'}[rule.type] + {true: ' dropping'}[rule.dropping]">
-        <div class="url-pattern">
+        <div class="url-pattern {{rule.urlType}}">
           <span ng-click="itemUrlClick(rule)" class="url-text">{{rule.$url}}</span>
         </div>
         <div class="url-replace">

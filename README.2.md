@@ -9,14 +9,14 @@ Chrome 重定向工具
 
 ### 使用
 #### 主界面
-![screen1](http://meowtec.github.io/assets/owl/screen1.png)
+![screen1](http://meowtec.github.io/assets/owl/screen1_1.png)
 
  - 右上角是全局开关，启用状态为蓝色，禁用状态为灰色。
  - 左侧是规则列表，目前只有一条规则。如果规则被禁用，它的颜色会变淡。
  - 下面的三个图标分别是删除、编辑和禁用按钮。
 
 #### 编辑界面
-![screen2](http://meowtec.github.io/assets/owl/screen2.png)
+![screen2](http://meowtec.github.io/assets/owl/screen2_1.png)
 
  - 第一个输入框，输入你需要 redirect 或者阻止的 url，如果你需要屏蔽一组特定格式的 url，可以输入正则或者 URL Match。
  - 右侧的`[.*]`按钮可以把你输入的字符串转化为恒等的正则表达式，url 中通常有很多特殊字符，使用这个按钮可以快速转义它们。
@@ -30,9 +30,24 @@ Chrome 重定向工具
  - 如果返回 false，请求会被阻止；
  - 如果返回 undefined/null，或者返回原 url，直接请求。
 
+#### 注意！新版本改动点
+旧版本需要点击右侧`[.*]`按钮进行正则和普通URL的切换；
+
+而新版本的`[.*]`仅提供快速转义的功能，是为了方便输入正则。
+
+如果你要输入一个正则，需要在正则前后加上斜杠，就像 JavaScript 中那样，如：
+```
+/^[0-9]{3}$/
+```
+如果你需要输入一个 UrlMatch，直接输入就好了：
+```
+http://user.qzone.qq.com/*
+```
+
 ### 实例
 
-下载项目路径下的`示例备份`文件，里面有很多例子。
+首先，下载项目路径下的`示例备份`文件，里面有很多例子。
+
 ##### jquery.min.js 去 `min`
 我们以 `jQuery` 官网为例，为了节省流量，jQuery 官网使用的是压缩后的 `jQuery.min.js` 文件，我们添加一条规则，把`jquery.min.js`重定向到`jquery.js`:
 url:
@@ -45,9 +60,7 @@ http://ajax.lug.ustc.edu.cn/ajax/libs/jquery/1.11.2/jquery.js
 ```
 
 ##### fc.5sing 跳转
-有一次我在网上找到一个翻唱链接，`http://fc.5sing.com/5936546.html`（这只是我临时找的，之前要找的早丢了），点进去发现访问不了。
-
-原来是 5sing 被酷狗收购了，新的链接地址应该是 `http://5sing.kugou.com/fc/5936546.html`。
+5sing 被酷狗收购后，域名由 `5sing.com` 变成 `5sing.kugou.com`, 但是跳转没做好，于是 `http://fc.5sing.com/5936546.html` 无法正确跳转到 `http://5sing.kugou.com/fc/5936546.html`。
 
 于是我添加了一条规则，让所有`fc.5sing.com`域名下的链接均能正常跳转到`5sing.kugou.com`域名。
 
@@ -62,11 +75,8 @@ function (url){
   return 'http://5sing.kugou.com/fc/' + matchResult[1] + '.html'
 }
 ```
-![screen4](http://meowtec.github.io/assets/owl/screen4.png)
-
 
 #### google web fonts 替换为 ustc.edu.cn
-
 url:
 ```
 /^https?:\/\/(((ajax|fonts)\.googleapis\.com)|(themes\.googleusercontent\.com)|(fonts\.gstatic\.com))/
@@ -95,7 +105,7 @@ replacer(url): 置空
  你可以在 replacer 函数中调用 download 方法，对资源进行下载操作，下面的实例表示在`music.qq.com`试听音乐时自动下载音频文件：
 
 
-regexp:
+url:
 ```
 http://cc.stream.qqmusic.qq.com/*.m4a*
 ```
@@ -107,6 +117,6 @@ function (url){
 ```
 
 ### 导出和导入
-设置页面有`导出`和`导入`两个按钮，分别可以讲当前设置导出为`.bac`格式的文本文件、从`.bac`文件导入备份的设置。
+设置页面有`导出`和`导入`两个按钮，分别可以将当前设置导出为`.bac`格式的文本文件、从`.bac`文件导入备份的设置。
 
 **!!! 请不要随便导入未知文件，切记 !!!**

@@ -91,7 +91,7 @@
       // 其他情况通过
 
     } else {
-      return item.replacer
+      return item.replacer || false
     }
   }
 

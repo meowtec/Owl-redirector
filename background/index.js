@@ -9,7 +9,7 @@
   // 解决 download request 的递归请求
   var recursionDealCache = {}
 
-  function download(url) {
+  this.download = function download(url) {
     if (recursionDealCache[url]) {
       // TODO 是否移除 recursionDealCache[url]
       return

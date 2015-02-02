@@ -95,7 +95,7 @@
       if (this.editType === 0) {
         var prevented
         var exist = rules.some(function (rule, index) {
-          if (rule.url === stage.url && rule.regex === stage.regex && !rule.inTrash) {
+          if (rule.url === stage.url && rule.urlType === stage.urlType && !rule.inTrash) {
             if (window.confirm(chrome.i18n.getMessage('overwrite'))) {
               rules[index] = stage
             } else {

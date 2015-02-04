@@ -69,7 +69,7 @@ $(function () {
       build: window.OWL.build,
       rules: rules
     }
-    var text = JSON.stringify(data)
+    var text = JSON.stringify(data, null, '  ')
     var dataUrl = utils.toDataUrl(text)
     var link = document.createElement('a')
     link.download = 'owl-' + new Date().toISOString() + '.bac'

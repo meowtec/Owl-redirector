@@ -105,6 +105,6 @@
     "message": "不再提醒"
   },
   "upgradeTip": {
-    "message": "你的 OWL 已升级到 v{{version}}, 此版本在使用上有一些变化。<br>请访问 <a href=\"{{github}}\" target=\"_blank\">Github 主页</a> 查看详细说明。"
+    "message": "你的 OWL 版本为 v{{version}}, 此版本和 v0.1.3 相比有一些变化。<br>请访问 <a href=\"{{github}}\" target=\"_blank\">Github 主页</a> 查看详细说明。"
   }
 }

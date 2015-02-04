@@ -17,8 +17,6 @@
       if (escape) {
         // 排除 escape 中的字符
         chars = chars.replace(_char2reg(escape), '')
-        console.log(_char2reg(escape))
-
         reg = _char2reg(chars)
       }
       return '^' + str.replace(reg, '\\$&') + '$'

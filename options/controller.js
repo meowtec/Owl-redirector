@@ -75,7 +75,7 @@
 
       // 如果是正则，则需要检查是否合法
       if (pattern.type === 'regex' && !utils.getReg(pattern.data)) {
-        return alert(chrome.i18n.getMessage('regexError'))
+        return window.alert(chrome.i18n.getMessage('regexError'))
       }
 
       stage.url = pattern.data

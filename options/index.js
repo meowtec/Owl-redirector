@@ -35,20 +35,23 @@ $(function () {
       if (!window.confirm(chrome.i18n.getMessage('importWarn'))) {
         return
       }
+
       var rules = []
       try {
         rules = JSON.parse(localStorage.getItem('rules'))
       } catch (e) {
       }
 
-      // >= 0.1.3 升级到 0.2.0
-      if (data.build <= 3) {
-        data.rules.forEach(function (rule) {
+      data.rules.forEach(function (rule) {
+        // >= 0.1.3 升级到 0.2.0
+        if (data.build <= 3) {
           rule.urlType = rule.regex ? 'regex' : 'url'
           delete rule.regex
-        })
-      }
-      // end
+        }
+        // end
+
+        rule.enable = true
+      })
 
       rules = rules.concat(data.rules)
       localStorage.setItem('rules', JSON.stringify(rules))
@@ -69,7 +72,7 @@ $(function () {
       build: window.OWL.build,
       rules: rules
     }
-    var text = JSON.stringify(data, null, '  ')
+    var text = JSON.stringify(data, ['url', 'replacer', 'urlType', 'type', 'build',  'rules'], '  ')
     var dataUrl = utils.toDataUrl(text)
     var link = document.createElement('a')
     link.download = 'owl-' + new Date().toISOString() + '.bac'

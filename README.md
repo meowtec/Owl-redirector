@@ -7,6 +7,14 @@ Chrome 重定向工具
  - 如果你翻不了墙，可以下载 [owl-redirector.crx](https://github.com/meowtec/Owl-redirector/blob/master/owl-redirector.crx?raw=true)，然后打开`扩展程序`页面，把`.crx`文件拖进去。
  - 如果前两种方法无效，请直接下载这个项目文件，然后以开发者模式加载，网上很多教程，此处略。
 
+### 内置规则
+扩展重新内置了几条规则，他们的功能包括：
+ - 屏蔽 Google 分析、CNZZ 等。由于众所周知的原因，Google 分析会造成网页加载很慢。
+ - Google 字体等 cdn 自动重定向到国内镜像。
+ - Google 搜索结果直接跳转到第三方网页，加快速度。
+
+也你可以根据你自己的需求任意添加。
+
 ### 使用
 #### 主界面
 ![screen1](http://meowtec.github.io/assets/owl/screen1_3.png)
@@ -45,8 +53,6 @@ http://user.qzone.qq.com/*
 ```
 
 ### 实例
-
-首先，下载项目路径下的`示例备份`文件，里面有很多例子。
 
 ##### jquery.min.js 去 `min`
 我们以 `jQuery` 官网为例，为了节省流量，jQuery 官网使用的是压缩后的 `jQuery.min.js` 文件，我们添加一条规则，把`jquery.min.js`重定向到`jquery.js`:

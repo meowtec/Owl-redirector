@@ -1,4 +1,4 @@
-(function () {
+(function (root) {
   angular.module('owlApp', []).filter('listFilter', function () {
     return function (items) {
       var trashCount = 0
@@ -20,4 +20,4 @@
       }
     }]
   )
-}).call(this)
+})(this)

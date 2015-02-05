@@ -1,4 +1,5 @@
-(function () {
+(function (root) {
+  var punycode = root.punycode
 
   var str2reg = (function () {
     // '.*^' -> /[\.\*\^]/
@@ -111,7 +112,7 @@
           data: str
         }
       } else {
-        str = str.replace(/\\\*/g, '*')
+        str = str.split('#')[0].replace(/\\\*/g, '*') // remove hash, \* -> *
         if (!new RegExp('^[a-zA-Z]+:\/\/').test(str)) {
           str = 'http://' + str
         }
@@ -125,9 +126,29 @@
       }
     },
 
+    // 支持中文域名的 encodeURI
+    encodeURI: function (url) {
+      var schemeMatch = /^[a-zA-Z0-9\-]+:\/\// // 匹配 http://
+      var domainMatch = /^.+?(?=[\/:])/ // 匹配 www.baidu.com
+
+      var scheme = (url.match(schemeMatch) || 0)[0] || ''
+      url = url.replace(schemeMatch, '')
+      url = scheme + url.replace(domainMatch, function (domain) {
+        domain = domain.toLowerCase()
+        if(!/^[0-9a-z_\-\.]$/.test(domain)){
+          domain = punycode.toASCII(domain)
+        }
+        return domain
+      })
+
+      url = root.encodeURI(url)
+
+      return url
+    },
+
     UrlMatch: UrlMatch
   }
 
   this.utils = utils
 
-}).call(this)
+})(this)

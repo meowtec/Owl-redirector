@@ -3,13 +3,13 @@
  * 读取 localstorage， 控制请求 redirect
  * 监听 options 等页面发来的通信信息，并重新读取
  * */
-(function () {
-  var utils = this.utils
+(function (root) {
+  var utils = root.utils
   // download
   // 解决 download request 的递归请求
   var recursionDealCache = {}
 
-  this.download = function download(url) {
+  root.download = function download(url) {
     if (recursionDealCache[url]) {
       // TODO 是否移除 recursionDealCache[url]
       return
@@ -35,7 +35,7 @@
           continue
         }
         if (item.urlType === 'url') { // url dict
-          item.url = item.url.split('#')[0] // remove hash
+          item.url = utils.encodeURI(item.url.split('#')[0]) // remove hash, then encode
           ;
           (new RegExp(':\/\/.*/').test(item.url)) || (item.url = item.url + '/') // add '/' after host; e.g. `http://www.baidu.com` -> `http://www.baidu.com/`
           if (urlList[item.url]) {
@@ -97,7 +97,7 @@
 
   // 获取匹配的规则
   function getMatchItem(url) {
-    // 先从 URL 列表中掉
+    // 先从 URL 列表中找
     if (urlList[url]) {
       return urlList[url]
     }
@@ -155,4 +155,4 @@
 
   loadData()
 
-}).call(this)
+})(this)

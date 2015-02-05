@@ -1,4 +1,7 @@
-(function () {
+(function (root) {
+  var utils = root.utils
+  var OWL = root.OWL
+
   var ruleTpl = {
     url: '',
     replacer: '',
@@ -207,6 +210,6 @@
         .replace('{{version}}', OWL.version)
     }
   }
-  this.owlController = owlController
+  root.owlController = owlController
 
-}).call(this)
+})(this)

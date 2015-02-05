@@ -112,7 +112,7 @@
           data: str
         }
       } else {
-        str = str.replace(/\\\*/g, '*')
+        str = str.split('#')[0].replace(/\\\*/g, '*') // remove hash, \* -> *
         if (!new RegExp('^[a-zA-Z]+:\/\/').test(str)) {
           str = 'http://' + str
         }

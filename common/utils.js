@@ -1,4 +1,5 @@
-(function () {
+(function (root) {
+  var punycode = root.punycode
 
   var str2reg = (function () {
     // '.*^' -> /[\.\*\^]/
@@ -125,9 +126,26 @@
       }
     },
 
+    // 支持中文域名的 encodeURI
+    encodeURI: function (url) {
+      var schemeMatch = /^[a-zA-Z0-9\-]+:\/\// // 匹配 http://
+      var domainMatch = /^.+?(?=[\/:])/ // 匹配 www.baidu.com
+
+      var scheme = (url.match(schemeMatch) || 0)[0] || ''
+      url = url.replace(schemeMatch, '')
+      console.log(url, domainMatch)
+      url = scheme + url.replace(domainMatch, function (domain) {
+        return punycode.toASCII(domain)
+      })
+
+      url = root.encodeURI(url)
+
+      return url
+    },
+
     UrlMatch: UrlMatch
   }
 
   this.utils = utils
 
-}).call(this)
+})(this)

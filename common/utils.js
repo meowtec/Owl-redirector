@@ -135,7 +135,10 @@
       url = url.replace(schemeMatch, '')
       console.log(url, domainMatch)
       url = scheme + url.replace(domainMatch, function (domain) {
-        return punycode.toASCII(domain)
+        if(!/^[0-9a-zA-Z_\-\.]$/.test(domain)){
+          domain = punycode.toASCII(domain)
+        }
+        return domain
       })
 
       url = root.encodeURI(url)

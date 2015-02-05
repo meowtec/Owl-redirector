@@ -35,7 +35,7 @@
           continue
         }
         if (item.urlType === 'url') { // url dict
-          item.url = item.url.split('#')[0] // remove hash
+          item.url = utils.encodeURI(item.url.split('#')[0]) // remove hash, then encode
           ;
           (new RegExp(':\/\/.*/').test(item.url)) || (item.url = item.url + '/') // add '/' after host; e.g. `http://www.baidu.com` -> `http://www.baidu.com/`
           if (urlList[item.url]) {
@@ -97,7 +97,7 @@
 
   // 获取匹配的规则
   function getMatchItem(url) {
-    // 先从 URL 列表中掉
+    // 先从 URL 列表中找
     if (urlList[url]) {
       return urlList[url]
     }

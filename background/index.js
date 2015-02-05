@@ -3,13 +3,13 @@
  * 读取 localstorage， 控制请求 redirect
  * 监听 options 等页面发来的通信信息，并重新读取
  * */
-(function () {
-  var utils = this.utils
+(function (root) {
+  var utils = root.utils
   // download
   // 解决 download request 的递归请求
   var recursionDealCache = {}
 
-  this.download = function download(url) {
+  root.download = function download(url) {
     if (recursionDealCache[url]) {
       // TODO 是否移除 recursionDealCache[url]
       return
@@ -155,4 +155,4 @@
 
   loadData()
 
-}).call(this)
+})(this)

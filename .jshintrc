@@ -40,7 +40,7 @@
   "browser": true,
   "node": true,
   "predef": [
-    "chrome", "angular", "$", "utils", "console", "OWL"
+    "chrome", "angular", "$", "console"
   ],
   "lastsemic": true,
   "nonbsp": true,

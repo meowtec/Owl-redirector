@@ -1,7 +1,9 @@
 // 更新
-(function () {
+(function (root) {
+  var utils = root.utils
+
   var globalSetting = utils.getData('global') || {}
-  var rules = utils.getData('rules') || this.DEFALUT_RULES
+  var rules = utils.getData('rules') || root.DEFALUT_RULES
 
   // 如果 globalSetting 中没有 build，或者没有 global setting
   // 说明是 1.1.3 版本以及以前
@@ -20,7 +22,7 @@
     }, 0)
   }
 
-  globalSetting.build = OWL.build
+  globalSetting.build = root.OWL.build
 
   if (globalSetting.enable == null) {
     globalSetting.enable = true
@@ -29,4 +31,4 @@
   utils.saveData('global', globalSetting)
   utils.saveData('rules', rules)
 
-}).call(this)
+})(this)

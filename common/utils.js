@@ -133,9 +133,9 @@
 
       var scheme = (url.match(schemeMatch) || 0)[0] || ''
       url = url.replace(schemeMatch, '')
-      console.log(url, domainMatch)
       url = scheme + url.replace(domainMatch, function (domain) {
-        if(!/^[0-9a-zA-Z_\-\.]$/.test(domain)){
+        domain = domain.toLowerCase()
+        if(!/^[0-9a-z_\-\.]$/.test(domain)){
           domain = punycode.toASCII(domain)
         }
         return domain

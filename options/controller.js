@@ -1,4 +1,7 @@
 (function (root) {
+  var utils = root.utils
+  var OWL = root.OWL
+
   var ruleTpl = {
     url: '',
     replacer: '',

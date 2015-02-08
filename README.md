@@ -45,12 +45,14 @@ Chrome 重定向工具
 
 如果你要输入一个正则，只需要在正则前后加上斜杠，就像 JavaScript 中那样，如：
 ```
-/^[0-9]{3}$/
+/^[0-9]{3}\s+$/
 ```
-如果你需要输入一个 UrlMatch，也是直接输入就好了：
+如果你需要输入一个 UrlMatch，也是直接输入，用`*`代替任意字符串：
 ```
 http://user.qzone.qq.com/*
 ```
+
+关于如何添加规则，也可以看 [Issue #8](https://github.com/meowtec/Owl-redirector/issues/8)，讲解得更清晰。
 
 ### 实例
 

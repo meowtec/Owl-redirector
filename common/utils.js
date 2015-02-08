@@ -149,6 +149,6 @@
     UrlMatch: UrlMatch
   }
 
-  this.utils = utils
+  root.utils = utils
 
 })(this)

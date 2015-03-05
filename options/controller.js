@@ -68,6 +68,8 @@
     }
 
     $scope.editSubmitClick = function () {
+      this.testResult.content = ''
+
       var stage = this.stage
       var rules = this.rules
       if (!stage.$url) {
@@ -127,6 +129,89 @@
     $scope.itemReplacerClick = function (rule) {
       if (rule.type === 'url') {
         window.open(rule.replacer)
+      }
+    }
+
+    // 测试功能
+    $scope.testResult = {
+      type: 'not-match',
+      content: '',
+      url: ''
+    }
+
+    $scope.ruleTest = function () {
+      var stage = this.stage
+      var test = this.testResult
+
+      if (!stage.$url || !test.url) {
+        return
+      }
+
+      var pattern = utils.getPattern(stage.$url)
+      var testUrl = utils.fixUrl(test.url)
+      var matchResult = false
+
+
+      if (pattern.type === 'url' && pattern.data === testUrl) {
+        matchResult = true
+      }
+      if (pattern.type === 'regex') {
+        var regexp = utils.getReg(pattern.data) || /^$/
+        if (regexp.test(testUrl)) {
+          matchResult = true
+        }
+      }
+
+      if (pattern.type === 'url-match') {
+        var match = new utils.UrlMatch(pattern.data)
+        if (match.test(testUrl)) {
+          matchResult = true
+        }
+      }
+
+      if (!matchResult) {
+        test.type = 'normal'
+        test.content = 'Not match'
+        return
+      }
+
+      // 跳转到 url
+      if (stage.type === 'url') {
+        if (!stage.replacer) {
+          test.type = 'normal'
+          test.content = 'cancel'
+        } else {
+          test.type = 'success'
+          test.content = stage.replacer
+        }
+      }
+      // Data url
+      if (stage.type === 'data') {
+        test.type = 'success'
+        test.content = utils.toDataUrl(stage.replacer)
+      }
+
+      if (stage.type === 'function') {
+        var func = utils.getFunction(stage.replacer)
+        if (!func) {
+          test.type = 'error'
+          test.content = 'Syntax Error'
+        } else {
+          var callRst = func(testUrl)
+          if (callRst === '' || callRst === false) {
+            test.type = 'normal'
+            test.content = 'cancel'
+          } else {
+            test.type = 'success'
+            test.content = callRst
+          }
+        }
+      }
+    }
+
+    $scope.openTestResult = function (testResult) {
+      if (testResult.type === 'success') {
+        window.open(testResult.content)
       }
     }
 

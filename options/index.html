@@ -9,6 +9,7 @@
 <link href="" rel="stylesheet">
 <script src="lib/zepto.min.js"></script>
 <script src="../common/info.js"></script>
+<script src="../common/punycode.min.js"></script>
 <script src="../common/utils.js"></script>
 <script src="index.js"></script>
 <script src="lib/angular.min.js"></script>
@@ -81,7 +82,7 @@
         <div class="form-item">
           <button class="submit-button button-test"  ng-click="ruleTest()">Test</button>
           <input class="text-input input-test" placeholder="输入一个测试 URL" ng-model="testResult.url">
-          <div class="rule-test-result test-{{ testResult.type }}">
+          <div class="rule-test-result test-{{ testResult.type }}" ng-click="openTestResult(testResult)">
             {{ testResult.content }}
           </div>
         </div>

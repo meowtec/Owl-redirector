@@ -35,9 +35,7 @@
           continue
         }
         if (item.urlType === 'url') { // url dict
-          item.url = utils.encodeURI(item.url.split('#')[0]) // remove hash, then encode
-          ;
-          (new RegExp(':\/\/.*/').test(item.url)) || (item.url = item.url + '/') // add '/' after host; e.g. `http://www.baidu.com` -> `http://www.baidu.com/`
+          item.url = utils.encodeURI(utils.fixUrl(item.url)) // remove hash, then encode;
           if (urlList[item.url]) {
             continue
           }

@@ -114,13 +114,7 @@
           data: str
         }
       } else {
-        str = str.split('#')[0].replace(/\\\*/g, '*') // remove hash, \* -> *
-        if (!new RegExp('^[a-zA-Z]+:\/\/').test(str)) {
-          str = 'http://' + str
-        }
-        if (!new RegExp(':\/\/.*/').test(str)) {
-          str = str + '/'
-        }
+        str = this.fixUrl(str).replace(/\\\*/g, '*') // \* -> *
         return {
           type: 'url',
           data: str
@@ -144,6 +138,18 @@
       })
 
       url = root.encodeURI(url)
+
+      return url
+    },
+
+    fixUrl: function (url) {
+      url = url.split('#')[0]
+      if (!new RegExp('^[a-zA-Z]+:\/\/').test(url)) {
+        url = 'http://' + url
+      }
+      if (!new RegExp(':\/\/.*/').test(url)) {
+        url = url + '/'
+      }
 
       return url
     },

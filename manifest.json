@@ -1,6 +1,6 @@
 {
   "name": "Owl Redirector",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "manifest_version": 2,
   "description": "HTTP Request redirector.",
   "default_locale": "en",

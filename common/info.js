@@ -1,6 +1,6 @@
 (function (root) {
   root.OWL = {
-    version: '0.2.3',
-    build: 5
+    version: '0.3.0',
+    build: 6
   }
 })(this)

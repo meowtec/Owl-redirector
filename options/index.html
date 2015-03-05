@@ -68,7 +68,7 @@
             <button type="button" id="url-to-reg" class="button-reg" ng-click="toRegex()" title="{{messages.regex}}"></button>
           </div>
           <div class="form-item">
-          <textarea class="replace-editor edit-{{stage.type}}" placeholder="{{messages.textareaPlaceholder[stage.type]}}"  ng-model="stage.replacer"></textarea>
+          <textarea class="replace-editor text-area edit-{{stage.type}}" placeholder="{{messages.textareaPlaceholder[stage.type]}}"  ng-model="stage.replacer"></textarea>
           <div class="replace-area-header">
             <input type="radio" name="replacetype" value="url" class="icon-hash radio-icon" ng-model="stage.type" title="URL">
             <input type="radio" name="replacetype" value="data" class="icon-doc-text radio-icon" ng-model="stage.type" title="{{messages.bodyData}}">
@@ -77,6 +77,13 @@
         </div>
         <div class="form-item">
           <button class="submit-button" ng-click="editSubmitClick()">{{messages.submitButton[editType]}}</button>
+        </div>
+        <div class="form-item">
+          <button class="submit-button button-test"  ng-click="ruleTest()">Test</button>
+          <input class="text-input input-test" placeholder="输入一个测试 URL" ng-model="testResult.url">
+          <div class="rule-test-result test-{{ testResult.type }}">
+            {{ testResult.content }}
+          </div>
         </div>
         </form>
       </div>

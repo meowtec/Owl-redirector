@@ -55,10 +55,6 @@ input {
   outline: none;
 }
 
-input[type="text"]:focus {
-  border: 1px solid #666;
-}
-
 h1.nav-header {
   font-size: 1.5em;
   line-height: 2em;
@@ -393,22 +389,15 @@ h1.nav-header {
   width: 600px;
   padding: 5px;
   height: 240px;
-  border: 1px solid #ddd;
-  outline: none;
-  white-space: pre;
-  font-size: 12px;
 }
 
-.replace-editor:focus {
-  border: 1px solid #666;
-}
 
 .replace-editor.edit-url {
   height: 100px;
 }
 
 .replace-editor.edit-function {
-  font-family: monaco, consolas;
+  font-family: monaco, consolas, sans-serif;
 }
 
 .button-reg {
@@ -448,6 +437,20 @@ h1.nav-header {
   box-sizing: border-box;
   height: 28px;
   padding: 0 5px;
+  border: none;
+  border-bottom: 1px solid #eee;
+}
+
+.text-area {
+  outline: none;
+  white-space: pre;
+  font-size: 12px;
+  border: 1px solid #eee;
+  resize: none;
+}
+
+.text-input:focus, .text-area:focus {
+  border-color: #ACCDD2;
 }
 
 .replace-area-header {
@@ -478,15 +481,67 @@ h1.nav-header {
 }
 
 .submit-button {
-  padding: 8px 20px;
+  padding: 6px 20px;
   margin: 0;
   border: none;
   background: #8bc34a;
   color: #fff;
+  margin-right: 15px;
+  border-bottom: 2px solid #68A91D;
+  vertical-align: bottom;
+  transition: all ease 0.2s;
+  cursor: pointer;
 }
 
 .submit-button:hover {
-  background: #3a6;
+  background: #75BA26;
+}
+
+.input-test {
+  width: 524px;
+}
+
+
+.button-test {
+  position: relative;
+  background: #ACCDD2;
+  border-color: #91B4BA;
+}
+
+.button-test:after {
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  border: 3px solid;
+  border-bottom-color: #ACCDD2;
+  border-right-color: #ACCDD2;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  right: -3px;
+  transform: rotate(-45deg);
+  top: 12px;
+}
+
+.button-test:hover {
+  background: #91B4BA;
+}
+.button-test:hover:after {
+  border-color: #91B4BA;
+}
+
+.rule-test-result {
+  margin: 20px 80px;
+  font-size: 12px;
+}
+.rule-test-result.test-success {
+  color: #75BA26;
+}
+.rule-test-result.test-block {
+  color: #D05C5C;
+}
+.rule-test-result.test-not-match {
+  color: #ccc;
 }
 
 .slide-checkbox {

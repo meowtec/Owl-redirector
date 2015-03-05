@@ -102,6 +102,8 @@
 
     // 判断字符串是 regex, url-pattern 还是 url
     getPattern: function (str) {
+      str = str || ''
+
       var isReg = /^\/(.*)\/$/
       if (isReg.test(str)) {
         return {

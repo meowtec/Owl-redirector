@@ -64,11 +64,6 @@ h1.nav-header {
   padding-left: 25px;
 }
 
-.nav-header sup, .nav-header sub {
-  color: #8bc34a;
-  font-family: monospace;
-}
-
 .nav-list {
   list-style: none;
   padding: 0;
@@ -167,11 +162,6 @@ h1.nav-header {
   text-shadow: 0 0 5px #fff;
 }
 
-/*
-.rules-trash-menu button:before{
-  font-family: "iconfontello";
-  content:'\e805';
-}*/
 
 .add-block-btn {
   border: none;
@@ -278,7 +268,6 @@ h1.nav-header {
 .rule-list .replacer-empty {
   color: #333;
   font-style: italic;
-  /*font-family: Georgia, serif;*/
 }
 
 .rule-item.item-url .replace-text {
@@ -354,6 +343,7 @@ h1.nav-header {
 .edit-container {
   width: 690px;
   height: 90%;
+  min-height: 350px;
 }
 
 .box-close-btn {
@@ -389,15 +379,11 @@ h1.nav-header {
   width: 600px;
   padding: 5px;
   height: 240px;
+  font-family: consolas, monospace, manoca, sans-serif;
 }
-
 
 .replace-editor.edit-url {
   height: 100px;
-}
-
-.replace-editor.edit-function {
-  font-family: monaco, consolas, sans-serif;
 }
 
 .button-reg {
@@ -436,7 +422,7 @@ h1.nav-header {
   width: 600px;
   box-sizing: border-box;
   height: 28px;
-  padding: 0 5px;
+  padding: 0;
   border: none;
   border-bottom: 1px solid #eee;
 }
@@ -531,16 +517,20 @@ h1.nav-header {
 }
 
 .rule-test-result {
-  margin: 20px 80px;
+  margin: 20px 25px 20px 80px;
   font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .rule-test-result.test-success {
   color: #75BA26;
+  cursor: pointer;
 }
-.rule-test-result.test-block {
+.rule-test-result.test-error {
   color: #D05C5C;
 }
-.rule-test-result.test-not-match {
+.rule-test-result.test-normal {
   color: #ccc;
 }
 

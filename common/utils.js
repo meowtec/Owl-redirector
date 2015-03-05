@@ -38,14 +38,16 @@
     getEval: function (str) {
       return eval('(' + str + ')')
     },
-
-    testEvalFunc: function (str) {
+    getFunction: function (str) {
       var result
       try {
         result = this.getEval(str)
       } catch (e) {
       }
-      return typeof result === 'function'
+
+      if(typeof result === 'function') {
+        return result
+      }
     },
 
     toDataUrl: function (str) {
@@ -135,7 +137,7 @@
       url = url.replace(schemeMatch, '')
       url = scheme + url.replace(domainMatch, function (domain) {
         domain = domain.toLowerCase()
-        if(!/^[0-9a-z_\-\.]$/.test(domain)){
+        if (!/^[0-9a-z_\-\.]$/.test(domain)) {
           domain = punycode.toASCII(domain)
         }
         return domain

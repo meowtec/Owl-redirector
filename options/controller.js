@@ -91,7 +91,7 @@
         stage.replacer = stage.replacer.replace(/\s/g, '')
       }
 
-      if (stage.type === 'function' && !utils.testEvalFunc(stage.replacer)) {
+      if (stage.type === 'function' && !utils.getFunction(stage.replacer)) {
         return window.alert(chrome.i18n.getMessage('functionError'))
       }
 

@@ -57,7 +57,7 @@
         }
 
         if (item.type === 'function') {
-          item.replacer = utils.getEval(item.replacer)
+          item.replacer = utils.getFunction(item.replacer)
         } else if (item.type === 'data') {
           item.replacer = utils.toDataUrl(item.replacer)
         }

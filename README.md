@@ -131,3 +131,6 @@ function (url){
 设置页面有`导出`和`导入`两个按钮，分别可以将当前设置导出为`.bac`格式的文本文件、从`.bac`文件导入备份的设置。
 
 **!!! 请不要随便导入未知文件，切记 !!!**
+
+## 意见反馈
+如果发现 Bug，或者对产品有其他建议，可以[新建 Issue](https://github.com/meowtec/Owl-redirector/issues/new)。

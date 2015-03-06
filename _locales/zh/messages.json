@@ -105,6 +105,6 @@
     "message": "不再提醒"
   },
   "upgradeTip": {
-    "message": "你的 OWL 版本为 v{{version}}, 新版本添加了测试 URL 的功能。另外，还修复了 v0.2.x 版本中默认规则的 bug。如果你是从 v0.2.0 升级到 v{{version}}，建议你先<strong>删除</strong>默认规则，再<strong>导入</strong>修正后的<a href=\"https://raw.githubusercontent.com/meowtec/Owl-redirector/master/%E9%BB%98%E8%AE%A4%E8%A7%84%E5%88%99_%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6.bac\" target=\"_blank\">规则文件</a>。"
+    "message": "你的 OWL 版本为 v{{version}}, 新版本添加了测试 URL 的功能。另外，还修复了 v0.2.x 版本中默认规则的 bug。<br>如果你是从 v0.2.0 升级到 v{{version}}，请先<strong>删除</strong>默认规则，再<strong>导入</strong>修正后的<a href=\"https://raw.githubusercontent.com/meowtec/Owl-redirector/master/%E9%BB%98%E8%AE%A4%E8%A7%84%E5%88%99_%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6.bac\" target=\"_blank\">规则文件</a>。"
   }
 }

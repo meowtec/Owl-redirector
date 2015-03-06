@@ -17,6 +17,8 @@
     $scope.globalSetting = utils.getData('global') || {
       enable: true
     }
+    $scope.globalSetting.introShowed = $scope.globalSetting['introShowed_' + OWL.build]
+
     $scope.editBoxShow = false
 
     // 如果是正则，自动加上斜杠
@@ -61,10 +63,9 @@
       $scope.editType = 1
       $scope.editingItem = item
     }
-
+    // 关闭引导
     $scope.hideIntro = function () {
-      $scope.globalSetting.introShowed = true
-
+      $scope.globalSetting['introShowed'] = $scope.globalSetting['introShowed_' + OWL.build] = true
     }
 
     $scope.editSubmitClick = function () {
@@ -291,8 +292,7 @@
       'edit': chrome.i18n.getMessage('edit'),
       'noLongerShow': chrome.i18n.getMessage('noLongerShow'),
       'upgradeTip': chrome.i18n.getMessage('upgradeTip')
-        .replace('{{github}}', 'https://github.com/meowtec/Owl-redirector')
-        .replace('{{version}}', OWL.version)
+        .replace(/\{\{version\}\}/g, OWL.version)
     }
   }
   root.owlController = owlController

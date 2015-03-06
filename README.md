@@ -16,7 +16,7 @@ Chrome 重定向工具
 也你可以根据你自己的需求任意添加。
 
 ### 使用方法
-[Issue8 如何添加规则？](https://github.com/meowtec/Owl-redirector/issues/8)
+[Issue8: 如何添加规则？](https://github.com/meowtec/Owl-redirector/issues/8)
 
 ### 老用户必看
 在老版本中存在一个 bug，导致扩展默认规则有很多不能正常工作。

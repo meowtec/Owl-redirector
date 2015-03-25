@@ -1,8 +1,8 @@
 // 默认设置
 this.DEFALUT_RULES = [{
-  "url": "http*://www.google.com/url*",
+  "url": "^https?://www.google.com(\\..+)?/url*",
   "replacer": "/* Google 结果页面直接跳转 */\nfunction (url){\n  var matchResult = url.match(/&url=([^&]+).*/)\n  return matchResult && decodeURIComponent(matchResult[1])\n}",
-  "urlType": "url-match",
+  "urlType": "regex",
   "type": "function"
 }, {
   "url": "^https?:\\/\\/(((ajax|fonts)\\.googleapis\\.com)|(themes\\.googleusercontent\\.com)|(fonts\\.gstatic\\.com))\\/",

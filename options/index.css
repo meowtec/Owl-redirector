@@ -109,6 +109,14 @@ h1.nav-header {
   display: none;
 }
 
+h3 {
+  margin-top: 2em;
+}
+
+p {
+  margin-top: 0.5em;
+}
+
 .main-section:target {
   display: block;
 }

@@ -67,7 +67,7 @@
       var json = typeof angular === 'undefined' ? JSON.stringify(data) : angular.toJson(data)
       localStorage.setItem(name, json)
       chrome.extension.sendRequest({
-        ask: "reload",
+        ask: "save",
         reload: name
       })
     },

@@ -141,12 +141,7 @@
   }
 
   chrome.extension.onRequest.addListener(function (request) {
-    if (request.ask === 'reload') {
-      loadData(request.reload)
-    }
-  })
-  chrome.extension.onRequest.addListener(function (request) {
-    if (request.ask === 'reload') {
+    if (request.ask === 'save') {
       loadData(request.reload)
     }
   })

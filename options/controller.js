@@ -41,6 +41,9 @@
       this.stage = angular.copy(ruleTpl)
       this.editBoxShow = true
       this.editType = 0
+      setTimeout(function() {
+        utils.$('#url-input').focus()
+      }, 0)
     }
 
     $scope.editCloseClick = function () {

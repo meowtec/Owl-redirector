@@ -155,14 +155,17 @@
       var testUrl = utils.fixUrl(test.url)
       var matchResult = false
 
+      var replaceTemplate
 
       if (pattern.type === 'url' && pattern.data === testUrl) {
         matchResult = true
+        replaceTemplate = pattern.data
       }
       if (pattern.type === 'regex') {
         var regexp = utils.getReg(pattern.data) || /^$/
         if (regexp.test(testUrl)) {
           matchResult = true
+          replaceTemplate = regexp
         }
       }
 
@@ -170,6 +173,7 @@
         var match = new utils.UrlMatch(pattern.data)
         if (match.test(testUrl)) {
           matchResult = true
+          replaceTemplate = match.valueOf()
         }
       }
 
@@ -186,7 +190,7 @@
           test.content = 'cancel'
         } else {
           test.type = 'success'
-          test.content = stage.replacer
+          test.content = testUrl.replace(replaceTemplate, stage.replacer)
         }
       }
       // Data url

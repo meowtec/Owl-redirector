@@ -89,7 +89,7 @@
       // 其他情况通过
 
     } else {
-      return item.replacer || false
+      return url.replace(item.url.valueOf(), item.replacer) || false
     }
   }
 

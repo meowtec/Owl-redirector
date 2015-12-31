@@ -25,12 +25,18 @@
   })()
 
   function UrlMatch(pattern) {
-    var regstr = utils.str2reg(pattern, '*').replace(/\*([^\$])/g, '[^/]*$1').replace(/\*\$/, '.*$')
+    // 结尾处的 * 表示若干层路径
+    // 非结尾处的 * 表示一层路径
+    var regstr = utils.str2reg(pattern, '*').replace(/\*([^\$])/g, '([^/]*)$1').replace(/\*\$/, '(.*)$')
     this.regex = new RegExp(regstr)
   }
 
-  UrlMatch.prototype.test = function (content) {
+  UrlMatch.prototype.test = function(content) {
     return this.regex.test(content)
+  }
+
+  UrlMatch.prototype.valueOf = function() {
+    return this.regex
   }
 
   var utils = {

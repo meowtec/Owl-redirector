@@ -18,13 +18,6 @@ Chrome 重定向工具
 ### 使用方法
 [Issue8: 如何添加规则？](https://github.com/meowtec/Owl-redirector/issues/8)
 
-### 老用户必看
-在老版本中存在一个 bug，导致扩展默认规则有很多不能正常工作。
-
-在新版本中已经修复。
-
-请手动删除这些默认规则，然后导入修正的[备份文件](https://raw.githubusercontent.com/meowtec/Owl-redirector/master/%E9%BB%98%E8%AE%A4%E8%A7%84%E5%88%99_%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6.bac)。
-
 ### 使用图解
 #### 主界面
 ![screen1](http://meowtec.github.io/assets/owl/screen1_3.png)
@@ -48,21 +41,7 @@ Chrome 重定向工具
  - 如果返回 false，请求会被阻止；
  - 如果返回 undefined/null，或者返回原 url，直接请求。
 
-#### 注意！新版本改动点
-旧版本需要点击右侧`[.*]`按钮进行正则和普通URL的切换；
-
-而新版本的`[.*]`仅提供快速转义的功能，是为了方便输入正则。
-
-如果你要输入一个正则，只需要在正则前后加上斜杠，就像 JavaScript 中那样，如：
-```
-/^[0-9]{3}\s+$/
-```
-如果你需要输入一个 UrlMatch，也是直接输入，用`*`代替任意字符串：
-```
-http://user.qzone.qq.com/*
-```
-
-关于如何添加规则，也可以看 [Issue #8](https://github.com/meowtec/Owl-redirector/issues/8)，讲解得更清晰。
+关于如何添加规则，也可以看 [Issue #8](https://github.com/meowtec/Owl-redirector/issues/8)。
 
 ### 实例
 

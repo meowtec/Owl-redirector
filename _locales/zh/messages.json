@@ -51,7 +51,7 @@
     "message": "版本"
   },
   "trash": {
-    "message": "你删除了{{trashCount}}条，你可以<button ng-click=\"dealTrash(0)\" class=\"icon-trash\">清空</button>回收站，或者<button ng-click=\"dealTrash(1)\" class=\"icon-ccw\">恢复</button>这些删除。<span  ng-show='latestTrash'>你也可以<button ng-click=\"dealTrash(2)\" class=\"icon-history\">撤消</button>最近一次删除</span>"
+    "message": "你删除了{{trashCount}}条，你可以<button ng-click=\"dealTrash(0)\" class=\"icon-trash\">清空</button>回收站，或者<button ng-click=\"dealTrash(1)\" class=\"icon-ccw\">恢复</button>这些删除。<span ng-show='latestTrash'>你也可以<button ng-click=\"dealTrash(2)\" class=\"icon-history\">撤消</button>最近一次删除</span>"
   },
   "importWarn": {
     "message": "请不要随便导入未知文件，除非你能够确定它是安全的。你确定导入该文件吗？"

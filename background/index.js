@@ -132,7 +132,7 @@
   // 全局启用
   function ruleEnable() {
     ruleDisable()
-    chrome.webRequest.onBeforeRequest.addListener(beforeRequest, {urls: ["<all_urls>"]}, ["blocking"])
+    chrome.webRequest.onBeforeRequest.addListener(beforeRequest, {urls: ['<all_urls>']}, ['blocking'])
   }
 
   // 全局禁用

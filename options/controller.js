@@ -223,7 +223,7 @@
       }
     }
 
-    // 0清空， 1恢复
+    // 0清空, 1恢复, 2撤销上次
     $scope.dealTrash = function (type) {
       var rules = $scope.rules
 
@@ -240,6 +240,7 @@
       } else if (type === 2) {
         if ($scope.latestTrash) {
           $scope.latestTrash.inTrash = false
+          $scope.latestTrash = null
           $scope.trashCount--
         }
       }

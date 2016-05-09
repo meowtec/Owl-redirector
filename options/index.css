@@ -317,9 +317,6 @@ p {
   bottom: 0;
   left: 0;
   background: rgba(255, 255, 255, 0.6);
-  justify-content: center;
-  flex-direction: column;
-  display: flex;
   transition: 0.4s ease all;
 }
 
@@ -331,6 +328,7 @@ p {
 
 .dialog {
   margin: 0 auto;
+  margin-top: 30%;
   background: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;

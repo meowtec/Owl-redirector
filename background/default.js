@@ -1,5 +1,5 @@
 // 默认设置
-this.DEFALUT_RULES = [{
+window.DEFALUT_RULES = [{
   "url": "^https?://www.google.com(\\..+)?/url*",
   "replacer": "/* Google 结果页面直接跳转 */\nfunction (url){\n  var matchResult = url.match(/&url=([^&]+).*/)\n  var urlArg = matchResult && decodeURIComponent(matchResult[1])\n  if (/^http/.test(urlArg)) {return urlArg}\n}",
   "urlType": "regex",

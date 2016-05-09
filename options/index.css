@@ -552,7 +552,7 @@ p {
   height: 1em;
   border-radius: 1em;
   background: #cccccc;
-  transition: all ease 0.4s;
+  transition: all ease 0.6s;
 }
 
 .rule-menu .slide-checkbox {
@@ -579,7 +579,7 @@ p {
   position: absolute;
   top: 0.1em;
   left: 0.1em;
-  transition: all ease 0.4s;
+  transition: all ease 0.1s;
 }
 
 .slide-checkbox:checked {

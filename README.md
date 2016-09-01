@@ -20,14 +20,14 @@ Chrome 重定向工具
 
 ### 使用图解
 #### 主界面
-![screen1](http://meowtec.github.io/assets/owl/screen1_3.png)
+![main](https://cloud.githubusercontent.com/assets/4006436/18153395/b8ea1f24-702f-11e6-96d2-7d997279445b.png)
 
  - 右上角是全局开关，启用状态为蓝色，禁用状态为灰色。
  - 左侧是规则列表，目前只有一条规则。如果规则被禁用，它的颜色会变淡。
  - 下面的三个图标分别是删除、编辑和禁用按钮。
 
 #### 编辑界面
-![screen2](http://meowtec.github.io/assets/owl/screen2_3.png)
+![editor](https://cloud.githubusercontent.com/assets/4006436/18153299/2b824db4-702f-11e6-8e26-4056329c4174.png)
 
  - 第一个输入框，输入你需要 redirect 或者阻止的 url，如果你需要屏蔽一组特定格式的 url，可以输入正则或者 URL Match。
  - 右侧的`[.*]`按钮可以把你输入的字符串转化为恒等的正则表达式，url 中通常有很多特殊字符，使用这个按钮可以快速转义它们。
@@ -67,7 +67,7 @@ http://fc.5sing.com/*
 ```
 replacer(函数):
 ```
-function (url){
+url => {
   var matchResult = url.match(/^http:\/\/fc\.5sing\.com\/(\d+)\.html.*$/)
   return 'http://5sing.kugou.com/fc/' + matchResult[1] + '.html'
 }
@@ -80,11 +80,9 @@ url:
 ```
 replacer(函数):
 ```
-function (url){
-  return url.replace('googleapis.com', 'lug.ustc.edu.cn')
-            .replace('themes.googleusercontent.com', 'google-themes.lug.ustc.edu.cn')
-            .replace('fonts.gstatic.com', 'fonts-gstatic.lug.ustc.edu.cn')
-}
+url => url.replace('googleapis.com', 'lug.ustc.edu.cn')
+  .replace('themes.googleusercontent.com', 'google-themes.lug.ustc.edu.cn')
+  .replace('fonts.gstatic.com', 'fonts-gstatic.lug.ustc.edu.cn')
 ```
 
 #### 干掉谷歌统计：
@@ -108,9 +106,9 @@ http://*.stream.qqmusic.qq.com/*.m4a*
 ```
 replacer(函数):
 ```
-function (url){
-  download(url)
-}
+url => download(url)
+// 或者只需要一个 download
+download
 ```
 
 ### 导出和导入

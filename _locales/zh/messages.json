@@ -15,7 +15,7 @@
     "message": "输入替换后的 url，如果什么都不填则表示被阻止访问"
   },
   "textareaPlaceholder_function": {
-    "message": "输入要替换原 url 的函数，函数参数 url 为原 url，函数返回值为替换后的新 url，如:\n\nfunction(url){\n  return url+'#myhash'\n}"
+    "message": "输入要替换原 url 的函数，函数参数 url 为原 url，函数返回值为替换后的新 url，如:\n\nurl => url+'#myhash'\n"
   },
   "textareaPlaceholder_data": {
     "message": "输入新的 body 数据。此数据将被编码为 data URL，并将原来的请求重定向到这个 data URL。\n你可以使用此功能直接修改网页中的外链 css 或者 js（含 jsonp）。\n由于 ajax 默认不能跨域访问 data URL，你无法使用本功能直接修改 ajax 数据。"

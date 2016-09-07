@@ -15,7 +15,7 @@
     "message": "An URL, then the request will be redirected to the URL. If this box was leave empty, the request would be blocked."
   },
   "textareaPlaceholder_function": {
-    "message": "A function receiving the origin url as the first argument, and it should return an new URL. e.g.:\n\nfunction(url){\n  return url+'#myhash'\n}"
+    "message": "A function receiving the origin url as the first argument, and it should return an new URL. e.g.:\n\nurl => url+'#myhash'\n}"
   },
   "textareaPlaceholder_data": {
     "message": "A piece of data, which will be encoded to a Data-URL, then the request will be redirected to the Data-URL.\nYou can use it to modify your css or js imported with <link> or <script>."

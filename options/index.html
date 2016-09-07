@@ -37,7 +37,10 @@
     <h2 class="sub-header">{{messages.ruleListTitle}}</h2>
     <div class="rule-menu">
       <input type="checkbox" class="slide-checkbox"  ng-model="globalSetting.enable" title="{{messages.globalEnable[globalSetting.enable]}}">
-      <button ng-click="showAddClick()" class="add-block-btn icon-doc-new-circled" title="{{messages.addNew}}"></button>
+      <button ng-click="showAddClick()" class="add-block-btn" title="{{messages.addNew}}">
+        <svg class="icon icon-file"><use xlink:href="icon.svg#icon-file"></use></svg>
+        添加
+      </button>
     </div>
     <div ng-hide="rules.length-trashCount" class="rule-empty-tip" ng-bind-html="messages.ruleEmptyTip | to_trusted"></div>
     <ul class="rule-list" ng-class="{true: '', false: 'disable'}[globalSetting.enable]">
@@ -50,9 +53,14 @@
           <div ng-hide="rule.replacer.length" class="replacer-empty">cancel</div>
         </div>
         <div class="item-control">
-          <button class="icon-trash rule-delete item-cicon" ng-click="deleteItemClick(rule)" title="{{messages.delete}}"></button>
-          <button class="icon-edit-alt rule-edit item-cicon" ng-click="editItemClick(rule)" title="{{messages.edit}}"></button>
-          <input type="checkbox" class="day-night-checkbox" ng-model="rule.enable" title="{{messages.itemEnable[rule.enable]}}">
+          <button ng-click="deleteItemClick(rule)" title="{{messages.delete}}">
+            <svg class="icon icon-bin"><use xlink:href="icon.svg#icon-bin"></use></svg>
+          </button>
+          <button ng-click="editItemClick(rule)" title="{{messages.edit}}">
+            <svg class="icon icon-edit"><use xlink:href="icon.svg#icon-edit"></use></svg>
+          </button>
+
+          <input type="checkbox" class="slide-checkbox"  ng-model="rule.enable" title="{{messages.itemEnable[rule.enable]}}">
         </div>
       </li>
     </ul>
@@ -62,7 +70,9 @@
     </div>
     <div class="mask-overlay" ng-show="editBoxShow">
       <div class="dialog edit-container">
-        <button ng-click="editCloseClick()" class="box-close-btn icon-cancel-1" title="{{messages.close}}"></button>
+        <button ng-click="editCloseClick()" class="box-close-btn" title="{{messages.close}}">
+          <svg class="icon icon-close"><use xlink:href="icon.svg#icon-close"></use></svg>
+        </button>
         <form>
           <div class="form-item">
             <input type="text" value="" class="text-input" placeholder="{{messages.urlPlaceholder}}" ng-model="stage.$url" id="url-input">
@@ -71,9 +81,18 @@
           <div class="form-item">
           <textarea class="replace-editor text-area edit-{{stage.type}}" placeholder="{{messages.textareaPlaceholder[stage.type]}}"  ng-model="stage.replacer"></textarea>
           <div class="replace-area-header">
-            <input type="radio" name="replacetype" value="url" class="icon-hash radio-icon" ng-model="stage.type" title="URL">
-            <input type="radio" name="replacetype" value="data" class="icon-doc-text radio-icon" ng-model="stage.type" title="{{messages.bodyData}}">
-            <input type="radio" name="replacetype" value="function" class="icon-facebook radio-icon" ng-model="stage.type" title="{{messages['function']}}">
+            <label class="radio">
+              <input type="radio" name="replacetype" value="url" ng-model="stage.type" title="URL">
+              <svg class="icon icon-url"><use xlink:href="icon.svg#icon-url"></use></svg>
+            </label>
+            <label class="radio">
+              <input type="radio" name="replacetype" value="data" ng-model="stage.type" title="{{messages.bodyData}}">
+              <svg class="icon icon-text"><use xlink:href="icon.svg#icon-text"></use></svg>
+            </label>
+            <label class="radio">
+              <input type="radio" name="replacetype" value="function" ng-model="stage.type" title="{{messages['function']}}">
+              <svg class="icon icon-f"><use xlink:href="icon.svg#icon-f"></use></svg>
+            </label>
           </div>
         </div>
         <div class="form-item">
@@ -111,7 +130,7 @@
     <p>
       <a href="http://zeptojs.com/" target="_blank">Zepto</a>,
       <a href="https://angularjs.org/" target="_blank">Angularjs</a>,
-      <a href="http://fontello.com/" target="_blank">Fontello</a>,
+      <a href="https://icomoon.io/app/" target="_blank">icomoon</a>,
       <a href="https://github.com/bestiejs/punycode.js" target="_blank">Punycode.js</a>
     </p>
     <!--<a href="http://weibo.com/u/2113729271" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/2113729271/64e7ae81/1.png"/></a>-->
